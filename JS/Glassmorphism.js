@@ -101,27 +101,6 @@ const Save = document.querySelector(".account-settings .save");
 const CamerInput = document.querySelector("#CamerInput");
 
 
-//Check if the user uses touchscreen or not
-
-function Resize() {
-
-if ("ontouchstart" in document.documentElement){
-  
-  Body.classList.replace("mouse","touch");
-
-}else{
-  
-  Body.classList.replace("touch","mouse");
-
-}
-
-}
-
-Resize();
-
-window.addEventListener("resize", Resize);
-
-
 //Activate & Deactivate Side Navbar
 Ham.addEventListener("click",() => {
 
