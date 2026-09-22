@@ -107,26 +107,6 @@ const Toggle = document.querySelector(".theme .toggle");
 
 Items[0].classList.add("active");
 
-//Check if the user uses touchscreen or not
-
-function Resize() {
-
-if ("ontouchstart" in document.documentElement){
-  
-  Body.classList.replace("mouse","touch");
-
-}else {
-  
-  Body.classList.replace("touch","mouse");
-
-}
-
-}
-
-Resize();
-
-window.addEventListener("resize", Resize);
-
 Items.forEach((Item,index) => {
 
 Item.addEventListener("click",() => {
