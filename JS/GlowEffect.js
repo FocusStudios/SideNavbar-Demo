@@ -290,15 +290,6 @@ const CamerInput = document.querySelector("#CamerInput");
 const Sections = document.querySelectorAll(".account-settings .fields section");
 
 
-//Check if the user uses touchscreen or not
-
-if ("ontouchstart" in document.documentElement)
-
-{Body.classList.add("touch");Body.classList.remove("mouse");}
-
-else {Body.classList.add("mouse");Body.classList.remove("touch");}
-
-
 //Activate & Deactivate Side Navbar
 
 Arrow.addEventListener("click",() => {
