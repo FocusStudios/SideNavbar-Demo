@@ -1069,4 +1069,4 @@ AirConditioners[0].querySelector(".plus").click();
 }
 
 demo();
-setInterval(() => {demo();},40000);
+setInterval(() => {demo();},30000);
