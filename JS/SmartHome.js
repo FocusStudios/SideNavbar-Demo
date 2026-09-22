@@ -717,8 +717,6 @@ function demo() {
 
 // Step 1
 
-setTimeout(() => {
-
 SectionContainer.style.display = "flex";
 
 SectionContainer.classList.add("active");
@@ -1063,10 +1061,7 @@ AirConditioners[0].querySelector(".plus").click();
 },5000);
 
 
-},500);
-
-
 }
 
 demo();
-setInterval(() => {demo();},30000);
+setInterval(() => {demo();},32000);
