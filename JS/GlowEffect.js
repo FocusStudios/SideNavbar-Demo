@@ -64,7 +64,6 @@ const Backs = document.querySelectorAll(".back");
 
 Frames[0].classList.add("active");
 
-
 const SideNavbar = document.querySelector(".side-navbar");
 
 
