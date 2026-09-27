@@ -7,9 +7,7 @@ const Minus = document.querySelector(".minus");
 const Reset = document.querySelector(".reset");
 const Toggle = document.querySelector(".Toggle");
 const Modes = document.querySelector(".Modes");
-const Beeps = document.querySelectorAll('.beep');
 const speedButton = document.querySelector(".speed-button");
-const Audio = document.querySelector(".Audio");
 const Theme = document.querySelector(".theme");
 
 const modes = [
@@ -61,14 +59,6 @@ savedRangeValues[0] = "-100px";
 savedRangeValues[1] = "-50px";
 savedRangeValues[2] = "-80px";
 savedRangeValues[3] = "-100px";
-
-// Play beep sound
-Beeps.forEach(Beep => {
-  Beep.addEventListener("click", () => {
-    Audio.currentTime = 0;
-    Audio.play();
-  });
-});
 
 // Power button toggle
 Power.addEventListener("click", () => {
