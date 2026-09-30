@@ -654,247 +654,352 @@ Frames.forEach(Frame => {Frame.style.overflowY="auto";});
 
 });
 
+
+
 const Mouse = document.querySelector(".mouse");
+
+let timers = new Set();
+let demoInterval = null;
+let isRunning = false;
+
+
+function delay(callback, time) {
+
+    const id = setTimeout(() => {
+
+        timers.delete(id);
+
+        // Do not execute while the tab is hidden
+        if (document.hidden) return;
+
+        callback();
+
+    }, time);
+
+    timers.add(id);
+
+    return id;
+}
+
+
+function clearTimers() {
+
+    timers.forEach(id => {
+        clearTimeout(id);
+    });
+
+    timers.clear();
+}
+
 
 function demo() {
 
-// Step 1
+    // Step 1
 
-setTimeout(() => {
+    delay(() => {
 
-Mouse.style.transform = "translate(15px,-255px)";
+        Mouse.style.transform = "translate(15px,-255px)";
 
-setTimeout(() => {
+        delay(() => {
 
-Mouse.querySelector(".cursor").classList.add("active");
+            Mouse.querySelector(".cursor").classList.add("active");
 
-setTimeout(() => {Arrow.click();},100);
+            delay(() => {
+                Arrow.click();
+            }, 100);
 
-setTimeout(() => {
+            delay(() => {
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                Mouse.querySelector(".cursor").classList.remove("active");
 
 
-// Step 2
+                // Step 2
 
-setTimeout(() => {
+                delay(() => {
 
-Mouse.style.transform = "translate(65px,-140px)";
+                    Mouse.style.transform = "translate(65px,-140px)";
 
-setTimeout(() => {
+                    delay(() => {
 
-Mouse.querySelector(".cursor").classList.add("active");
+                        Mouse.querySelector(".cursor").classList.add("active");
 
-setTimeout(() => {ItemMenus[0].querySelector(".item-btn").click();},100);
+                        delay(() => {
+                            ItemMenus[0].querySelector(".item-btn").click();
+                        }, 100);
 
-setTimeout(() => {
+                        delay(() => {
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                            Mouse.querySelector(".cursor").classList.remove("active");
 
 
-// Step 3
+                            // Step 3
 
-setTimeout(() => {
+                            delay(() => {
 
-Mouse.style.transform = "translate(65px,0)";
+                                Mouse.style.transform = "translate(65px,0)";
 
-setTimeout(() => {
+                                delay(() => {
 
-Mouse.querySelector(".cursor").classList.add("active");
+                                    Mouse.querySelector(".cursor").classList.add("active");
 
-setTimeout(() => {ItemMenus[1].querySelector(".item-btn").click();},100);
+                                    delay(() => {
+                                        ItemMenus[1].querySelector(".item-btn").click();
+                                    }, 100);
 
-setTimeout(() => {
+                                    delay(() => {
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                                        Mouse.querySelector(".cursor").classList.remove("active");
 
 
-// Step 4
+                                        // Step 4
 
-setTimeout(() => {
+                                        delay(() => {
 
-Mouse.style.transform = "translate(65px,-115px)";
+                                            Mouse.style.transform = "translate(65px,-115px)";
 
-setTimeout(() => {
+                                            delay(() => {
 
-Mouse.querySelector(".cursor").classList.add("active");
+                                                Mouse.querySelector(".cursor").classList.add("active");
 
-setTimeout(() => {ItemMenus[1].querySelector(".item-btn").click();},100);
+                                                delay(() => {
+                                                    ItemMenus[1].querySelector(".item-btn").click();
+                                                }, 100);
 
-setTimeout(() => {
+                                                delay(() => {
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                                                    Mouse.querySelector(".cursor").classList.remove("active");
 
 
-// Step 5
+                                                    // Step 5
 
-setTimeout(() => {
+                                                    delay(() => {
 
-Mouse.style.transform = "translate(82px,-255px)";
+                                                        Mouse.style.transform = "translate(82px,-255px)";
 
-setTimeout(() => {
+                                                        delay(() => {
 
-Mouse.querySelector(".cursor").classList.add("active");
+                                                            Mouse.querySelector(".cursor").classList.add("active");
 
-setTimeout(() => {Arrow.click();},100);
+                                                            delay(() => {
+                                                                Arrow.click();
+                                                            }, 100);
 
-setTimeout(() => {
+                                                            delay(() => {
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                                                                Mouse.querySelector(".cursor").classList.remove("active");
 
 
-// Step 6
+                                                                // Step 6
 
-setTimeout(() => {
+                                                                delay(() => {
 
-Mouse.style.transform = "translate(-5px,-170px)";
+                                                                    Mouse.style.transform = "translate(-5px,-170px)";
 
-setTimeout(() => {
+                                                                    delay(() => {
 
-Texts[0].style.display = "flex";
+                                                                        Texts[0].style.display = "flex";
 
-// Step 7
 
-setTimeout(() => {
+                                                                        // Step 7
 
-setTimeout(() => {Texts[0].style.display = "none";},100);
+                                                                        delay(() => {
 
-Mouse.style.transform = "translate(-5px,-140px)";
+                                                                            delay(() => {
+                                                                                Texts[0].style.display = "none";
+                                                                            }, 100);
 
-setTimeout(() => {
+                                                                            Mouse.style.transform = "translate(-5px,-140px)";
 
-Texts[1].style.display = "flex";
+                                                                            delay(() => {
 
+                                                                                Texts[1].style.display = "flex";
 
-// Step 8
 
-setTimeout(() => {
+                                                                                // Step 8
 
-Mouse.style.transform = "translate(-5px,-140px)";
+                                                                                delay(() => {
 
-setTimeout(() => {
+                                                                                    Mouse.style.transform = "translate(-5px,-140px)";
 
-Mouse.querySelector(".cursor").classList.add("active");
+                                                                                    delay(() => {
 
-setTimeout(() => {ItemMenus[0].querySelector(".item-btn").click();},100);
+                                                                                        Mouse.querySelector(".cursor").classList.add("active");
 
-setTimeout(() => {
+                                                                                        delay(() => {
+                                                                                            ItemMenus[0].querySelector(".item-btn").click();
+                                                                                        }, 100);
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                                                                                        delay(() => {
 
+                                                                                            Mouse.querySelector(".cursor").classList.remove("active");
 
-// Step 9
 
-setTimeout(() => {
+                                                                                            // Step 9
 
-setTimeout(() => {Texts[1].style.display = "none";},100);
+                                                                                            delay(() => {
 
-Mouse.style.transform = "translate(60px,-110px)";
+                                                                                                delay(() => {
+                                                                                                    Texts[1].style.display = "none";
+                                                                                                }, 100);
 
-setTimeout(() => {
+                                                                                                Mouse.style.transform = "translate(60px,-110px)";
 
-Mouse.querySelector(".cursor").classList.add("active");
+                                                                                                delay(() => {
 
-setTimeout(() => {MenuItemBs[0].classList.add("active");},100);
+                                                                                                    Mouse.querySelector(".cursor").classList.add("active");
 
-setTimeout(() => {
+                                                                                                    delay(() => {
+                                                                                                        MenuItemBs[0].classList.add("active");
+                                                                                                    }, 100);
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                                                                                                    delay(() => {
 
+                                                                                                        Mouse.querySelector(".cursor").classList.remove("active");
 
-// Step 10
 
-setTimeout(() => {
+                                                                                                        // Step 10
 
-Mouse.style.transform = "translate(100px,-150px)";
+                                                                                                        delay(() => {
 
-setTimeout(() => {
+                                                                                                            Mouse.style.transform = "translate(100px,-150px)";
 
-Mouse.querySelector(".cursor").classList.add("active");
+                                                                                                            delay(() => {
 
-setTimeout(() => {deactivate();},100);
+                                                                                                                Mouse.querySelector(".cursor").classList.add("active");
 
-setTimeout(() => {
+                                                                                                                delay(() => {
+                                                                                                                    deactivate();
+                                                                                                                }, 100);
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                                                                                                                delay(() => {
 
+                                                                                                                    Mouse.querySelector(".cursor").classList.remove("active");
 
-// Step 11
 
-setTimeout(() => {
+                                                                                                                    // Step 11
 
-Mouse.style.transform = "translate(180px,0)";
+                                                                                                                    delay(() => {
 
-},800);
+                                                                                                                        Mouse.style.transform = "translate(180px,0)";
 
+                                                                                                                    }, 800);
 
-},300);
 
-},800);
+                                                                                                                }, 300);
 
-},800);
+                                                                                                            }, 800);
 
+                                                                                                        }, 800);
 
-},300);
 
-},800);
+                                                                                                    }, 300);
 
-},800);
+                                                                                                }, 800);
 
+                                                                                            }, 800);
 
-},300);
 
-},500);
+                                                                                        }, 300);
 
-},500);
+                                                                                    }, 800);
 
+                                                                                }, 500);
 
-},500);
+                                                                            }, 500);
 
-},800);
 
+                                                                        }, 500);
 
-},500);
+                                                                    }, 800);
 
-},800);
 
+                                                                }, 500);
 
-},300);
+                                                            }, 800);
 
-},800);
+                                                        }, 300);
 
-},800);
+                                                    }, 800);
 
+                                                }, 800);
 
-},300);
 
-},800);
+                                            }, 300);
 
-},800);
+                                        }, 800);
 
+                                    }, 800);
 
-},300);
 
-},800);
+                                }, 300);
 
-},800);
+                            }, 800);
 
+                        }, 800);
 
-},300);
 
-},800);
+                    }, 300);
 
-},800);
+                }, 800);
 
+            }, 800);
 
-},300);
 
-},800);
+        }, 300);
 
-},1000);
+    }, 1000);
 
 }
 
-demo();
-setInterval(()=> {demo();},20000);
 
+function startDemo() {
+
+    if (isRunning) return;
+
+    isRunning = true;
+
+    demo();
+
+    demoInterval = setInterval(() => {
+
+        if (!document.hidden) {
+
+            clearTimers();
+
+            demo();
+
+        }
+
+    }, 20000);
+
+}
+
+
+function stopDemo() {
+
+    isRunning = false;
+
+    clearTimers();
+
+    clearInterval(demoInterval);
+
+    demoInterval = null;
+}
+
+document.addEventListener("visibilitychange", () => {
+
+    if (document.hidden) {
+
+        // User switched to another tab/window
+        stopDemo();
+
+    } else {
+
+        // User returned to this tab
+        startDemo();
+
+    }
+
+});
+
+startDemo();
