@@ -270,7 +270,7 @@ function demo() {
 
 setTimeout(() => {
 
-Mouse.style.transform = "translate(0,20px)";
+Mouse.style.transform = "translate(0,30px)";
 
 setTimeout(() => {
 
