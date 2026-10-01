@@ -261,7 +261,7 @@ function demo() {
 
 setTimeout(() => {
 
-Mouse.style.transform = "translate(-55px,-250px)";
+Mouse.style.transform = "translate(-58px,-262px)";
 
 setTimeout(() => {
 
@@ -280,7 +280,7 @@ Mouse.querySelector(".cursor").classList.remove("active");
 
 setTimeout(() => {
 
-Mouse.style.transform = "translate(-10px,-90px)";
+Mouse.style.transform = "translate(-10px,-95px)";
 
 setTimeout(() => {
 
@@ -331,11 +331,11 @@ Mouse.querySelector(".cursor").classList.remove("active");
 
 setTimeout(() => {
 
-Mouse.style.transform = "translate(20px,20px)";
+Mouse.style.transform = "translate(20px,13px)";
 
 setTimeout(() => {
 
-Mouse.style.transform = "translate(35px,35px)";
+Mouse.style.transform = "translate(38px,28px)";
 
 speedButton.style.transform = "rotate(70deg)";
 
@@ -344,11 +344,11 @@ speedButton.style.transform = "rotate(70deg)";
 
 setTimeout(() => {
 
-Mouse.style.transform = "translate(-20px,160px)";
+Mouse.style.transform = "translate(-18px,150px)";
 
 setTimeout(() => {
 
-Mouse.style.transform = "translate(-20px,120px)";
+Mouse.style.transform = "translate(-18px,110px)";
 
 ranges[0].querySelector(".level").style.bottom = "-40px";
 
@@ -357,11 +357,11 @@ ranges[0].querySelector(".level").style.bottom = "-40px";
 
 setTimeout(() => {
 
-Mouse.style.transform = "translate(7px,120px)";
+Mouse.style.transform = "translate(7px,115px)";
 
 setTimeout(() => {
 
-Mouse.style.transform = "translate(7px,150px)";
+Mouse.style.transform = "translate(7px,142px)";
 
 ranges[1].querySelector(".level").style.bottom = "-90px";
 
@@ -370,7 +370,7 @@ ranges[1].querySelector(".level").style.bottom = "-90px";
 
 setTimeout(() => {
 
-Mouse.style.transform = "translate(20px,-85px)";
+Mouse.style.transform = "translate(20px,-92px)";
 
 setTimeout(() => {
 
@@ -389,7 +389,7 @@ Mouse.querySelector(".cursor").classList.remove("active");
 
 setTimeout(() => {
 
-Mouse.style.transform = "translate(80px,-225px)";
+Mouse.style.transform = "translate(80px,-235px)";
 
 setTimeout(() => {
 
@@ -419,7 +419,7 @@ Mouse.querySelector(".cursor").classList.remove("active");
 
 setTimeout(() => {
 
-Mouse.style.transform = "translate(-55px,-250px)";
+Mouse.style.transform = "translate(-58px,-262px)";
 
 setTimeout(() => {
 
