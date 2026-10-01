@@ -280,7 +280,7 @@ Mouse.querySelector(".cursor").classList.remove("active");
 
 setTimeout(() => {
 
-Mouse.style.transform = "translate(-10px,-95px)";
+Mouse.style.transform = "translate(-10px,-100px)";
 
 setTimeout(() => {
 
@@ -344,11 +344,11 @@ speedButton.style.transform = "rotate(70deg)";
 
 setTimeout(() => {
 
-Mouse.style.transform = "translate(-18px,150px)";
+Mouse.style.transform = "translate(-18px,155px)";
 
 setTimeout(() => {
 
-Mouse.style.transform = "translate(-18px,110px)";
+Mouse.style.transform = "translate(-18px,117px)";
 
 ranges[0].querySelector(".level").style.bottom = "-40px";
 
@@ -357,11 +357,11 @@ ranges[0].querySelector(".level").style.bottom = "-40px";
 
 setTimeout(() => {
 
-Mouse.style.transform = "translate(7px,115px)";
+Mouse.style.transform = "translate(7px,120px)";
 
 setTimeout(() => {
 
-Mouse.style.transform = "translate(7px,142px)";
+Mouse.style.transform = "translate(7px,147px)";
 
 ranges[1].querySelector(".level").style.bottom = "-90px";
 
@@ -370,7 +370,7 @@ ranges[1].querySelector(".level").style.bottom = "-90px";
 
 setTimeout(() => {
 
-Mouse.style.transform = "translate(20px,-92px)";
+Mouse.style.transform = "translate(20px,-97px)";
 
 setTimeout(() => {
 
