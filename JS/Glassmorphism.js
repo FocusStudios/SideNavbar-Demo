@@ -444,7 +444,7 @@ Mouse.querySelector(".cursor").classList.remove("active");
 
 setTimeout(() => {
 
-Mouse.style.transform = "translate(-125px,-250px)";
+Mouse.style.transform = "translate(-123px,-248px)";
 
 setTimeout(() => {
 
@@ -480,7 +480,7 @@ Mouse.querySelector(".cursor").classList.remove("active");
 
 setTimeout(() => {
 
-Mouse.style.transform = "translate(85px,-250px)";
+Mouse.style.transform = "translate(85px,-248px)";
 
 setTimeout(() => {
 
