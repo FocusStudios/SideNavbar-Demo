@@ -95,7 +95,7 @@ fields.forEach((field, index) => {
 });
 
 
-const BackAS = document.querySelector(".back");
+const BackAS = document.querySelector(".Back");
 const Settings = document.querySelector(".settings");
 const Save = document.querySelector(".account-settings .save");
 const CamerInput = document.querySelector("#CamerInput");
@@ -444,7 +444,7 @@ Mouse.querySelector(".cursor").classList.remove("active");
 
 setTimeout(() => {
 
-Mouse.style.transform = "translate(-120px,-250px)";
+Mouse.style.transform = "translate(-130px,-250px)";
 
 setTimeout(() => {
 
