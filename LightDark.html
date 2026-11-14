@@ -61,10 +61,10 @@ background:var(--Background);}
 --theme2:rgba(255,255,255,0.02);
 --color:#ABFF70;
 --layer:rgba(124,222,81,0.1);
---shadow:rgba(194,198,223,0.3);
+--shadow:rgba(194,198,223,0.4);
 --text:#C2C6DF;
---border:rgba(171, 255, 112,0.5);
---Shadow:rgba(171, 255, 112,0.2);
+--border:rgba(171, 255, 112,1);
+--Shadow:0 0 5px rgba(171, 255, 112,0.4);
 --Background:#060a15;}
 
 .Body.light {
@@ -75,10 +75,10 @@ background:var(--Background);}
 --theme1:rgba(61,66,95,0.2);
 --theme2:rgba(61,66,95,0.02);
 --color:#47A900;
---layer:rgba(124,222,81,0.2);
+--layer:rgba(124,222,81,0.1);
 --shadow:rgba(61,66,95,0.5);
 --border:rgba(107, 252, 3,0);
---Shadow:rgba(124, 224, 172, 0.4);
+--Shadow:0 0 20px rgba(124, 224, 172, 0.4);
 --Background:#f2f7f7;}
 
 .slide {
@@ -131,9 +131,9 @@ pointer-events:none;
 border-radius:35px;
 transition:0.4s;
 transform:scale(0.8);
+box-shadow:var(--Shadow);
 background:var(--background);
-outline:0.1px solid var(--border);
-box-shadow:0 0 20px var(--Shadow);}
+outline:0.5px solid var(--border);}
 
 .item-list {
 position:absolute;
