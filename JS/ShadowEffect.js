@@ -716,9 +716,11 @@ function demo() {
             Mouse.querySelector(".cursor").classList.add("active");
 
             delay(() => {
+                
                 Arrow.click();
+                
             }, 100);
-
+            
             delay(() => {
 
                 Mouse.querySelector(".cursor").classList.remove("active");
@@ -728,7 +730,7 @@ function demo() {
 
                 delay(() => {
 
-                    Mouse.style.transform = "translate(65px,-150px)";
+                    Mouse.style.transform = "translate(65px,-140px)";
 
                     delay(() => {
 
@@ -747,7 +749,7 @@ function demo() {
 
                             delay(() => {
 
-                                Mouse.style.transform = "translate(65px,-10px)";
+                                Mouse.style.transform = "translate(65px,0)";
 
                                 delay(() => {
 
@@ -766,7 +768,7 @@ function demo() {
 
                                         delay(() => {
 
-                                            Mouse.style.transform = "translate(65px,-125px)";
+                                            Mouse.style.transform = "translate(65px,-115px)";
 
                                             delay(() => {
 
@@ -804,7 +806,7 @@ function demo() {
 
                                                                 delay(() => {
 
-                                                                    Mouse.style.transform = "translate(-5px,-180px)";
+                                                                    Mouse.style.transform = "translate(-5px,-170px)";
 
                                                                     delay(() => {
 
@@ -819,7 +821,7 @@ function demo() {
                                                                                 Texts[0].style.display = "none";
                                                                             }, 100);
 
-                                                                            Mouse.style.transform = "translate(-5px,-150px)";
+                                                                            Mouse.style.transform = "translate(-5px,-140px)";
 
                                                                             delay(() => {
 
@@ -830,7 +832,7 @@ function demo() {
 
                                                                                 delay(() => {
 
-                                                                                    Mouse.style.transform = "translate(-5px,-150px)";
+                                                                                    Mouse.style.transform = "translate(-5px,-140px)";
 
                                                                                     delay(() => {
 
@@ -853,7 +855,7 @@ function demo() {
                                                                                                     Texts[1].style.display = "none";
                                                                                                 }, 100);
 
-                                                                                                Mouse.style.transform = "translate(60px,-120px)";
+                                                                                                Mouse.style.transform = "translate(60px,-110px)";
 
                                                                                                 delay(() => {
 
@@ -872,7 +874,7 @@ function demo() {
 
                                                                                                         delay(() => {
 
-                                                                                                            Mouse.style.transform = "translate(100px,-160px)";
+                                                                                                            Mouse.style.transform = "translate(100px,-150px)";
 
                                                                                                             delay(() => {
 
@@ -896,21 +898,21 @@ function demo() {
                                                                                                                     }, 800);
 
 
-                                                                                                                }, 300);
+                                                                                                                }, 400);
 
                                                                                                             }, 800);
 
                                                                                                         }, 800);
 
 
-                                                                                                    }, 300);
+                                                                                                    }, 400);
 
                                                                                                 }, 800);
 
                                                                                             }, 800);
 
 
-                                                                                        }, 300);
+                                                                                        }, 400);
 
                                                                                     }, 800);
 
@@ -928,42 +930,39 @@ function demo() {
 
                                                             }, 800);
 
-                                                        }, 300);
+                                                        }, 400);
 
                                                     }, 800);
 
                                                 }, 800);
 
 
-                                            }, 300);
+                                            }, 400);
 
                                         }, 800);
 
                                     }, 800);
 
 
-                                }, 300);
+                                }, 400);
 
                             }, 800);
 
                         }, 800);
 
 
-                    }, 300);
+                    }, 400);
 
                 }, 800);
 
             }, 800);
 
-
-        }, 300);
+        }, 400);
 
     }, 1000);
 
 }
 
-
-// Start Demo
 
 function startDemo() {
 
@@ -988,8 +987,6 @@ function startDemo() {
 }
 
 
-// Stop Demo
-
 function stopDemo() {
 
     isRunning = false;
@@ -999,11 +996,7 @@ function stopDemo() {
     clearInterval(demoInterval);
 
     demoInterval = null;
-
 }
-
-
-// Detect Page Visibility
 
 document.addEventListener("visibilitychange", () => {
 
@@ -1020,8 +1013,5 @@ document.addEventListener("visibilitychange", () => {
     }
 
 });
-
-
-// Initial Start
 
 startDemo();
