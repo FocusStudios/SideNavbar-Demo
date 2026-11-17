@@ -666,14 +666,13 @@ Frames.forEach(Frame => {Frame.style.overflowY="auto";});
 
 
 
+
 const Mouse = document.querySelector(".mouse");
 
 let timers = new Set();
 let demoInterval = null;
 let isRunning = false;
 
-
-// Delay Function
 
 function delay(callback, time) {
 
@@ -694,8 +693,6 @@ function delay(callback, time) {
 }
 
 
-// Clear All Pending Timers
-
 function clearTimers() {
 
     timers.forEach(id => {
@@ -703,242 +700,265 @@ function clearTimers() {
     });
 
     timers.clear();
-
 }
 
 
-// Demo Animation
-
 function demo() {
 
-// Step 1
+    // Step 1
 
-delay(() => {
+    delay(() => {
 
-Mouse.style.transform = "translate(15px,-255px)";
+        Mouse.style.transform = "translate(15px,-255px)";
 
-delay(() => {
+        delay(() => {
 
-Mouse.querySelector(".cursor").classList.add("active");
+            Mouse.querySelector(".cursor").classList.add("active");
 
-delay(() => {Arrow.click();},100);
+            delay(() => {
+                Arrow.click();
+            }, 100);
 
-delay(() => {
+            delay(() => {
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                Mouse.querySelector(".cursor").classList.remove("active");
 
 
-// Step 2
+                // Step 2
 
-delay(() => {
+                delay(() => {
 
-Mouse.style.transform = "translate(65px,-150px)";
+                    Mouse.style.transform = "translate(65px,-150px)";
 
-delay(() => {
+                    delay(() => {
 
-Mouse.querySelector(".cursor").classList.add("active");
+                        Mouse.querySelector(".cursor").classList.add("active");
 
-delay(() => {ItemMenus[0].querySelector(".item-btn").click();},100);
+                        delay(() => {
+                            ItemMenus[0].querySelector(".item-btn").click();
+                        }, 100);
 
-delay(() => {
+                        delay(() => {
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                            Mouse.querySelector(".cursor").classList.remove("active");
 
 
-// Step 3
+                            // Step 3
 
-delay(() => {
+                            delay(() => {
 
-Mouse.style.transform = "translate(65px,-10px)";
+                                Mouse.style.transform = "translate(65px,-10px)";
 
-delay(() => {
+                                delay(() => {
 
-Mouse.querySelector(".cursor").classList.add("active");
+                                    Mouse.querySelector(".cursor").classList.add("active");
 
-delay(() => {ItemMenus[1].querySelector(".item-btn").click();},100);
+                                    delay(() => {
+                                        ItemMenus[1].querySelector(".item-btn").click();
+                                    }, 100);
 
-delay(() => {
+                                    delay(() => {
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                                        Mouse.querySelector(".cursor").classList.remove("active");
 
 
-// Step 4
+                                        // Step 4
 
-delay(() => {
+                                        delay(() => {
 
-Mouse.style.transform = "translate(65px,-125px)";
+                                            Mouse.style.transform = "translate(65px,-125px)";
 
-delay(() => {
+                                            delay(() => {
 
-Mouse.querySelector(".cursor").classList.add("active");
+                                                Mouse.querySelector(".cursor").classList.add("active");
 
-delay(() => {ItemMenus[1].querySelector(".item-btn").click();},100);
+                                                delay(() => {
+                                                    ItemMenus[1].querySelector(".item-btn").click();
+                                                }, 100);
 
-delay(() => {
+                                                delay(() => {
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                                                    Mouse.querySelector(".cursor").classList.remove("active");
 
 
-// Step 5
+                                                    // Step 5
 
-delay(() => {
+                                                    delay(() => {
 
-Mouse.style.transform = "translate(82px,-255px)";
+                                                        Mouse.style.transform = "translate(82px,-255px)";
 
-delay(() => {
+                                                        delay(() => {
 
-Mouse.querySelector(".cursor").classList.add("active");
+                                                            Mouse.querySelector(".cursor").classList.add("active");
 
-delay(() => {Arrow.click();},100);
+                                                            delay(() => {
+                                                                Arrow.click();
+                                                            }, 100);
 
-delay(() => {
+                                                            delay(() => {
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                                                                Mouse.querySelector(".cursor").classList.remove("active");
 
 
-// Step 6
+                                                                // Step 6
 
-delay(() => {
+                                                                delay(() => {
 
-Mouse.style.transform = "translate(-5px,-180px)";
+                                                                    Mouse.style.transform = "translate(-5px,-180px)";
 
-delay(() => {
+                                                                    delay(() => {
 
-Texts[0].style.display = "flex";
+                                                                        Texts[0].style.display = "flex";
 
 
-// Step 7
+                                                                        // Step 7
 
-delay(() => {
+                                                                        delay(() => {
 
-delay(() => {Texts[0].style.display = "none";},100);
+                                                                            delay(() => {
+                                                                                Texts[0].style.display = "none";
+                                                                            }, 100);
 
-Mouse.style.transform = "translate(-5px,-150px)";
+                                                                            Mouse.style.transform = "translate(-5px,-150px)";
 
-delay(() => {
+                                                                            delay(() => {
 
-Texts[1].style.display = "flex";
+                                                                                Texts[1].style.display = "flex";
 
 
-// Step 8
+                                                                                // Step 8
 
-delay(() => {
+                                                                                delay(() => {
 
-Mouse.style.transform = "translate(-5px,-150px)";
+                                                                                    Mouse.style.transform = "translate(-5px,-150px)";
 
-delay(() => {
+                                                                                    delay(() => {
 
-Mouse.querySelector(".cursor").classList.add("active");
+                                                                                        Mouse.querySelector(".cursor").classList.add("active");
 
-delay(() => {ItemMenus[0].querySelector(".item-btn").click();},100);
+                                                                                        delay(() => {
+                                                                                            ItemMenus[0].querySelector(".item-btn").click();
+                                                                                        }, 100);
 
-delay(() => {
+                                                                                        delay(() => {
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                                                                                            Mouse.querySelector(".cursor").classList.remove("active");
 
 
-// Step 9
+                                                                                            // Step 9
 
-delay(() => {
+                                                                                            delay(() => {
 
-delay(() => {Texts[1].style.display = "none";},100);
+                                                                                                delay(() => {
+                                                                                                    Texts[1].style.display = "none";
+                                                                                                }, 100);
 
-Mouse.style.transform = "translate(60px,-120px)";
+                                                                                                Mouse.style.transform = "translate(60px,-120px)";
 
-delay(() => {
+                                                                                                delay(() => {
 
-Mouse.querySelector(".cursor").classList.add("active");
+                                                                                                    Mouse.querySelector(".cursor").classList.add("active");
 
-delay(() => {MenuItemBs[0].classList.add("active");},100);
+                                                                                                    delay(() => {
+                                                                                                        MenuItemBs[0].classList.add("active");
+                                                                                                    }, 100);
 
-delay(() => {
+                                                                                                    delay(() => {
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                                                                                                        Mouse.querySelector(".cursor").classList.remove("active");
 
 
-// Step 10
+                                                                                                        // Step 10
 
-delay(() => {
+                                                                                                        delay(() => {
 
-Mouse.style.transform = "translate(100px,-160px)";
+                                                                                                            Mouse.style.transform = "translate(100px,-160px)";
 
-delay(() => {
+                                                                                                            delay(() => {
 
-Mouse.querySelector(".cursor").classList.add("active");
+                                                                                                                Mouse.querySelector(".cursor").classList.add("active");
 
-delay(() => {deactivate();},100);
+                                                                                                                delay(() => {
+                                                                                                                    deactivate();
+                                                                                                                }, 100);
 
-delay(() => {
+                                                                                                                delay(() => {
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                                                                                                                    Mouse.querySelector(".cursor").classList.remove("active");
 
 
-// Step 11
+                                                                                                                    // Step 11
 
-delay(() => {
+                                                                                                                    delay(() => {
 
-Mouse.style.transform = "translate(180px,0)";
+                                                                                                                        Mouse.style.transform = "translate(180px,0)";
 
-},800);
+                                                                                                                    }, 800);
 
 
-},300);
+                                                                                                                }, 300);
 
-},800);
+                                                                                                            }, 800);
 
-},800);
+                                                                                                        }, 800);
 
 
-},300);
+                                                                                                    }, 300);
 
-},800);
+                                                                                                }, 800);
 
-},800);
+                                                                                            }, 800);
 
 
-},300);
+                                                                                        }, 300);
 
-},500);
+                                                                                    }, 800);
 
-},500);
+                                                                                }, 500);
 
+                                                                            }, 500);
 
-},500);
 
-},800);
+                                                                        }, 500);
 
+                                                                    }, 800);
 
-},500);
 
-},800);
+                                                                }, 500);
 
+                                                            }, 800);
 
-},300);
+                                                        }, 300);
 
-},800);
+                                                    }, 800);
 
-},800);
+                                                }, 800);
 
 
-},300);
+                                            }, 300);
 
-},800);
+                                        }, 800);
 
-},800);
+                                    }, 800);
 
 
-},300);
+                                }, 300);
 
-},800);
+                            }, 800);
 
-},800);
+                        }, 800);
 
 
-},300);
+                    }, 300);
 
-},800);
+                }, 800);
 
-},1000);
+            }, 800);
+
+
+        }, 300);
+
+    }, 1000);
 
 }
 
@@ -1005,6 +1025,3 @@ document.addEventListener("visibilitychange", () => {
 // Initial Start
 
 startDemo();
-
-
-
