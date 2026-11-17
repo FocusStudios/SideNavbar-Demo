@@ -667,6 +667,50 @@ Frames.forEach(Frame => {Frame.style.overflowY="auto";});
 
 const Mouse = document.querySelector(".mouse");
 
+let DemoTimeouts = [];
+let DemoInterval;
+
+const OriginalSetTimeout = window.setTimeout;
+
+window.setTimeout = function(callback, delay, ...args) {
+
+    const id = OriginalSetTimeout(callback, delay, ...args);
+
+    DemoTimeouts.push(id);
+
+    return id;
+
+};
+
+function clearDemo() {
+
+    DemoTimeouts.forEach(id => clearTimeout(id));
+
+    DemoTimeouts = [];
+
+}
+
+function resetDemo() {
+
+    clearDemo();
+
+    Mouse.style.transform = "translate(0,0)";
+    Mouse.querySelector(".cursor").classList.remove("active");
+
+    Texts.forEach(text => text.style.display = "none");
+
+    Arrow.classList.remove("active");
+
+    ItemMenus.forEach(item => {
+        item.classList.remove("active");
+    });
+
+    MenuItemBs.forEach(item => {
+        item.classList.remove("active");
+    });
+
+}
+
 function demo() {
 
 // Step 1
@@ -895,17 +939,50 @@ Mouse.style.transform = "translate(180px,0)";
 
 },800);
 
-},800);
-
-
-},300);
-
-},800);
-
 },1000);
 
 }
 
-demo();
-setInterval(()=> {demo();},20000);
+// Start Demo
+
+function startDemo() {
+
+    resetDemo();
+
+    demo();
+
+    clearInterval(DemoInterval);
+
+    DemoInterval = setInterval(() => {
+
+        resetDemo();
+
+        demo();
+
+    }, 20000);
+
+}
+
+// Detect Page Visibility
+
+document.addEventListener("visibilitychange", () => {
+
+    if (document.hidden) {
+
+        clearDemo();
+
+        clearInterval(DemoInterval);
+
+    } else {
+
+        startDemo();
+
+    }
+
+});
+
+// Initial Start
+
+startDemo();
+
 
