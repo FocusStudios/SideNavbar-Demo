@@ -251,272 +251,352 @@ if(Body.classList.contains("dark")){Body.classList.replace("dark","light");Theme
 });
 
 
+
 const Mouse = document.querySelector(".mouse");
+
+let timers = new Set();
+let demoInterval = null;
+let isRunning = false;
+
+
+function delay(callback, time) {
+
+    const id = setTimeout(() => {
+
+        timers.delete(id);
+
+        if (document.hidden) return;
+
+        callback();
+
+    }, time);
+
+    timers.add(id);
+
+    return id;
+}
+
+
+function clearTimers() {
+
+    timers.forEach(id => {
+        clearTimeout(id);
+    });
+
+    timers.clear();
+}
 
 
 function demo() {
 
+    // Step 1
 
-// Step 1
+    delay(() => {
 
-setTimeout(() => {
+        Mouse.style.transform = "translate(-58px,-262px)";
 
-Mouse.style.transform = "translate(-58px,-262px)";
+        delay(() => {
 
-setTimeout(() => {
+            Mouse.querySelector(".cursor").classList.add("active");
 
-Mouse.querySelector(".cursor").classList.add("active");
+            Power.click();
+            Power.classList.add("active");
 
-Power.click();
-Power.classList.add("active");
+            delay(() => {
 
-setTimeout(() => {
+                Power.classList.remove("active");
 
-Power.classList.remove("active");
-Mouse.querySelector(".cursor").classList.remove("active");
+                Mouse.querySelector(".cursor").classList.remove("active");
 
 
-// Step 2
+                // Step 2
 
-setTimeout(() => {
+                delay(() => {
 
-Mouse.style.transform = "translate(-10px,-100px)";
+                    Mouse.style.transform = "translate(-10px,-100px)";
 
-setTimeout(() => {
+                    delay(() => {
 
-Mouse.querySelector(".cursor").classList.add("active");
+                        Mouse.querySelector(".cursor").classList.add("active");
 
-Minus.click();
-Minus.classList.add("active");
+                        Minus.click();
+                        Minus.classList.add("active");
 
-setTimeout(() => {
+                        delay(() => {
 
-Minus.classList.remove("active");
-Mouse.querySelector(".cursor").classList.remove("active");
+                            Minus.classList.remove("active");
 
+                            Mouse.querySelector(".cursor").classList.remove("active");
 
-// Step 3
 
-setTimeout(() => {
+                            // Step 3
 
-Mouse.querySelector(".cursor").classList.add("active");
+                            delay(() => {
 
-Minus.click();
-Minus.classList.add("active");
+                                Mouse.querySelector(".cursor").classList.add("active");
 
-setTimeout(() => {
+                                Minus.click();
+                                Minus.classList.add("active");
 
-Minus.classList.remove("active");
-Mouse.querySelector(".cursor").classList.remove("active");
+                                delay(() => {
 
+                                    Minus.classList.remove("active");
 
-// Step 4
+                                    Mouse.querySelector(".cursor").classList.remove("active");
 
-setTimeout(() => {
 
-Mouse.style.transform = "translate(40px,-40px)";
+                                    // Step 4
 
-setTimeout(() => {
+                                    delay(() => {
 
-Mouse.querySelector(".cursor").classList.add("active");
+                                        Mouse.style.transform = "translate(40px,-40px)";
 
-Toggle.click();
+                                        delay(() => {
 
-setTimeout(() => {
+                                            Mouse.querySelector(".cursor").classList.add("active");
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                                            Toggle.click();
 
+                                            delay(() => {
 
-// Step 5
+                                                Mouse.querySelector(".cursor").classList.remove("active");
 
-setTimeout(() => {
 
-Mouse.style.transform = "translate(20px,13px)";
+                                                // Step 5
 
-setTimeout(() => {
+                                                delay(() => {
 
-Mouse.style.transform = "translate(38px,28px)";
+                                                    Mouse.style.transform = "translate(20px,13px)";
 
-speedButton.style.transform = "rotate(70deg)";
+                                                    delay(() => {
 
+                                                        Mouse.style.transform = "translate(38px,28px)";
 
-// Step 6
+                                                        speedButton.style.transform = "rotate(70deg)";
 
-setTimeout(() => {
 
-Mouse.style.transform = "translate(-18px,155px)";
+                                                        // Step 6
 
-setTimeout(() => {
+                                                        delay(() => {
 
-Mouse.style.transform = "translate(-18px,117px)";
+                                                            Mouse.style.transform = "translate(-18px,155px)";
 
-ranges[0].querySelector(".level").style.bottom = "-40px";
+                                                            delay(() => {
 
+                                                                Mouse.style.transform = "translate(-18px,117px)";
 
-// Step 7
+                                                                ranges[0].querySelector(".level").style.bottom = "-40px";
 
-setTimeout(() => {
 
-Mouse.style.transform = "translate(7px,120px)";
+                                                                // Step 7
 
-setTimeout(() => {
+                                                                delay(() => {
 
-Mouse.style.transform = "translate(7px,147px)";
+                                                                    Mouse.style.transform = "translate(7px,120px)";
 
-ranges[1].querySelector(".level").style.bottom = "-90px";
+                                                                    delay(() => {
 
+                                                                        Mouse.style.transform = "translate(7px,147px)";
 
-// Step 8
+                                                                        ranges[1].querySelector(".level").style.bottom = "-90px";
 
-setTimeout(() => {
 
-Mouse.style.transform = "translate(20px,-97px)";
+                                                                        // Step 8
 
-setTimeout(() => {
+                                                                        delay(() => {
 
-Mouse.querySelector(".cursor").classList.add("active");
+                                                                            Mouse.style.transform = "translate(20px,-97px)";
 
-Reset.click();
-Reset.classList.add("active");
+                                                                            delay(() => {
 
-setTimeout(() => {
+                                                                                Mouse.querySelector(".cursor").classList.add("active");
 
-Reset.classList.remove("active");
-Mouse.querySelector(".cursor").classList.remove("active");
+                                                                                Reset.click();
+                                                                                Reset.classList.add("active");
 
+                                                                                delay(() => {
 
-// Step 9
+                                                                                    Reset.classList.remove("active");
 
-setTimeout(() => {
+                                                                                    Mouse.querySelector(".cursor").classList.remove("active");
 
-Mouse.style.transform = "translate(80px,-235px)";
 
-setTimeout(() => {
+                                                                                    // Step 9
 
-Mouse.querySelector(".cursor").classList.add("active");
+                                                                                    delay(() => {
 
-Theme.click();
+                                                                                        Mouse.style.transform = "translate(80px,-235px)";
 
-setTimeout(() => {
+                                                                                        delay(() => {
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                                                                                            Mouse.querySelector(".cursor").classList.add("active");
 
+                                                                                            Theme.click();
 
-// Step 10
+                                                                                            delay(() => {
 
-setTimeout(() => {
+                                                                                                Mouse.querySelector(".cursor").classList.remove("active");
 
-Mouse.querySelector(".cursor").classList.add("active");
 
-Theme.click();
+                                                                                                // Step 10
 
-setTimeout(() => {
+                                                                                                delay(() => {
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                                                                                                    Mouse.querySelector(".cursor").classList.add("active");
 
+                                                                                                    Theme.click();
 
-// Step 11
+                                                                                                    delay(() => {
 
-setTimeout(() => {
+                                                                                                        Mouse.querySelector(".cursor").classList.remove("active");
 
-Mouse.style.transform = "translate(-58px,-262px)";
 
-setTimeout(() => {
+                                                                                                        // Step 11
 
-Mouse.querySelector(".cursor").classList.add("active");
+                                                                                                        delay(() => {
 
-Power.click();
-Power.classList.add("active");
+                                                                                                            Mouse.style.transform = "translate(-58px,-262px)";
 
-setTimeout(() => {
+                                                                                                            delay(() => {
 
-Power.classList.remove("active");
-Mouse.querySelector(".cursor").classList.remove("active");
+                                                                                                                Mouse.querySelector(".cursor").classList.add("active");
 
+                                                                                                                Power.click();
+                                                                                                                Power.classList.add("active");
 
-// Step 12
+                                                                                                                delay(() => {
 
-setTimeout(() => {
+                                                                                                                    Power.classList.remove("active");
 
-Mouse.style.transform = "translate(180px,0)";
+                                                                                                                    Mouse.querySelector(".cursor").classList.remove("active");
 
 
-},500);
+                                                                                                                    // Step 12
 
+                                                                                                                    delay(() => {
 
-},300);
+                                                                                                                        Mouse.style.transform = "translate(180px,0)";
 
-},500);
+                                                                                                                    }, 500);
 
-},800);
 
+                                                                                                                }, 300);
 
-},300);
+                                                                                                            }, 500);
 
-},500);
+                                                                                                        }, 800);
 
 
-},300);
+                                                                                                    }, 300);
 
-},500);
+                                                                                                }, 500);
 
-},800);
 
+                                                                                            }, 300);
 
-},300);
+                                                                                        }, 500);
 
-},500);
+                                                                                    }, 800);
 
-},800);
 
+                                                                                }, 300);
 
-},500);
+                                                                            }, 500);
 
-},800);
+                                                                        }, 800);
 
 
+                                                                    }, 500);
 
-},500);
+                                                                }, 800);
 
-},800);
 
+                                                            }, 500);
 
+                                                        }, 800);
 
-},500);
 
-},800);
+                                                    }, 500);
 
+                                                }, 800);
 
-},300);
 
-},500);
+                                            }, 300);
 
-},800);
+                                        }, 500);
 
+                                    }, 800);
 
-},300);
 
-},500);
+                                }, 300);
 
+                            }, 500);
 
+                        }, 800);
 
-},300);
 
-},500);
+                    }, 300);
 
-},800);
+                }, 500);
 
 
+            }, 300);
 
-},300);
+        }, 500);
 
-},500);
-
-},800);
-
+    }, 800);
 
 }
 
 
-demo();
-setInterval(() => {demo();},17000);
+function startDemo() {
+
+    if (isRunning) return;
+
+    isRunning = true;
+
+    demo();
+
+    demoInterval = setInterval(() => {
+
+        if (!document.hidden) {
+
+            clearTimers();
+
+            demo();
+
+        }
+
+    }, 17000);
+
+}
+
+
+function stopDemo() {
+
+    isRunning = false;
+
+    clearTimers();
+
+    clearInterval(demoInterval);
+
+    demoInterval = null;
+}
+
+
+document.addEventListener("visibilitychange", () => {
+
+    if (document.hidden) {
+
+        stopDemo();
+
+    } else {
+
+        startDemo();
+
+    }
+
+});
+
+
+startDemo();
