@@ -665,218 +665,217 @@ Frames.forEach(Frame => {Frame.style.overflowY="auto";});
 });
 
 
+
 const Mouse = document.querySelector(".mouse");
 
-let DemoTimeouts = [];
-let DemoInterval;
+let timers = new Set();
+let demoInterval = null;
+let isRunning = false;
 
-const OriginalSetTimeout = window.setTimeout;
 
-window.setTimeout = function(callback, delay, ...args) {
+// Delay Function
 
-    const id = OriginalSetTimeout(callback, delay, ...args);
+function delay(callback, time) {
 
-    DemoTimeouts.push(id);
+    const id = setTimeout(() => {
+
+        timers.delete(id);
+
+        // Do not execute while the tab is hidden
+        if (document.hidden) return;
+
+        callback();
+
+    }, time);
+
+    timers.add(id);
 
     return id;
+}
 
-};
 
-function clearDemo() {
+// Clear All Pending Timers
 
-    DemoTimeouts.forEach(id => clearTimeout(id));
+function clearTimers() {
 
-    DemoTimeouts = [];
+    timers.forEach(id => {
+        clearTimeout(id);
+    });
+
+    timers.clear();
 
 }
 
-function resetDemo() {
 
-    clearDemo();
-
-    Mouse.style.transform = "translate(0,0)";
-    Mouse.querySelector(".cursor").classList.remove("active");
-
-    Texts.forEach(text => text.style.display = "none");
-
-    Arrow.classList.remove("active");
-
-    ItemMenus.forEach(item => {
-        item.classList.remove("active");
-    });
-
-    MenuItemBs.forEach(item => {
-        item.classList.remove("active");
-    });
-
-}
+// Demo Animation
 
 function demo() {
 
 // Step 1
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.style.transform = "translate(15px,-255px)";
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.querySelector(".cursor").classList.add("active");
 
-setTimeout(() => {Arrow.click();},100);
+delay(() => {Arrow.click();},100);
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.querySelector(".cursor").classList.remove("active");
 
 
 // Step 2
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.style.transform = "translate(65px,-150px)";
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.querySelector(".cursor").classList.add("active");
 
-setTimeout(() => {ItemMenus[0].querySelector(".item-btn").click();},100);
+delay(() => {ItemMenus[0].querySelector(".item-btn").click();},100);
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.querySelector(".cursor").classList.remove("active");
 
 
 // Step 3
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.style.transform = "translate(65px,-10px)";
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.querySelector(".cursor").classList.add("active");
 
-setTimeout(() => {ItemMenus[1].querySelector(".item-btn").click();},100);
+delay(() => {ItemMenus[1].querySelector(".item-btn").click();},100);
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.querySelector(".cursor").classList.remove("active");
 
 
 // Step 4
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.style.transform = "translate(65px,-125px)";
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.querySelector(".cursor").classList.add("active");
 
-setTimeout(() => {ItemMenus[1].querySelector(".item-btn").click();},100);
+delay(() => {ItemMenus[1].querySelector(".item-btn").click();},100);
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.querySelector(".cursor").classList.remove("active");
 
 
 // Step 5
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.style.transform = "translate(82px,-255px)";
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.querySelector(".cursor").classList.add("active");
 
-setTimeout(() => {Arrow.click();},100);
+delay(() => {Arrow.click();},100);
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.querySelector(".cursor").classList.remove("active");
 
 
 // Step 6
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.style.transform = "translate(-5px,-180px)";
 
-setTimeout(() => {
+delay(() => {
 
 Texts[0].style.display = "flex";
 
+
 // Step 7
 
-setTimeout(() => {
+delay(() => {
 
-setTimeout(() => {Texts[0].style.display = "none";},100);
+delay(() => {Texts[0].style.display = "none";},100);
 
 Mouse.style.transform = "translate(-5px,-150px)";
 
-setTimeout(() => {
+delay(() => {
 
 Texts[1].style.display = "flex";
 
 
 // Step 8
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.style.transform = "translate(-5px,-150px)";
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.querySelector(".cursor").classList.add("active");
 
-setTimeout(() => {ItemMenus[0].querySelector(".item-btn").click();},100);
+delay(() => {ItemMenus[0].querySelector(".item-btn").click();},100);
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.querySelector(".cursor").classList.remove("active");
 
 
 // Step 9
 
-setTimeout(() => {
+delay(() => {
 
-setTimeout(() => {Texts[1].style.display = "none";},100);
+delay(() => {Texts[1].style.display = "none";},100);
 
 Mouse.style.transform = "translate(60px,-120px)";
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.querySelector(".cursor").classList.add("active");
 
-setTimeout(() => {MenuItemBs[0].classList.add("active");},100);
+delay(() => {MenuItemBs[0].classList.add("active");},100);
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.querySelector(".cursor").classList.remove("active");
 
 
 // Step 10
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.style.transform = "translate(100px,-160px)";
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.querySelector(".cursor").classList.add("active");
 
-setTimeout(() => {deactivate();},100);
+delay(() => {deactivate();},100);
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.querySelector(".cursor").classList.remove("active");
 
 
 // Step 11
 
-setTimeout(() => {
+delay(() => {
 
 Mouse.style.transform = "translate(180px,0)";
 
@@ -943,25 +942,46 @@ Mouse.style.transform = "translate(180px,0)";
 
 }
 
+
 // Start Demo
 
 function startDemo() {
 
-    resetDemo();
+    if (isRunning) return;
+
+    isRunning = true;
 
     demo();
 
-    clearInterval(DemoInterval);
+    demoInterval = setInterval(() => {
 
-    DemoInterval = setInterval(() => {
+        if (!document.hidden) {
 
-        resetDemo();
+            clearTimers();
 
-        demo();
+            demo();
+
+        }
 
     }, 20000);
 
 }
+
+
+// Stop Demo
+
+function stopDemo() {
+
+    isRunning = false;
+
+    clearTimers();
+
+    clearInterval(demoInterval);
+
+    demoInterval = null;
+
+}
+
 
 // Detect Page Visibility
 
@@ -969,20 +989,22 @@ document.addEventListener("visibilitychange", () => {
 
     if (document.hidden) {
 
-        clearDemo();
-
-        clearInterval(DemoInterval);
+        // User switched to another tab/window
+        stopDemo();
 
     } else {
 
+        // User returned to this tab
         startDemo();
 
     }
 
 });
 
+
 // Initial Start
 
 startDemo();
+
 
 
