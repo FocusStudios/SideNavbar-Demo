@@ -667,6 +667,7 @@ Frames.forEach(Frame => {Frame.style.overflowY="auto";});
 
 
 
+
 const Mouse = document.querySelector(".mouse");
 
 let timers = new Set();
@@ -680,7 +681,6 @@ function delay(callback, time) {
 
         timers.delete(id);
 
-        // Do not execute while the tab is hidden
         if (document.hidden) return;
 
         callback();
@@ -716,11 +716,9 @@ function demo() {
             Mouse.querySelector(".cursor").classList.add("active");
 
             delay(() => {
-                
                 Arrow.click();
-                
             }, 100);
-            
+
             delay(() => {
 
                 Mouse.querySelector(".cursor").classList.remove("active");
@@ -730,7 +728,7 @@ function demo() {
 
                 delay(() => {
 
-                    Mouse.style.transform = "translate(65px,-140px)";
+                    Mouse.style.transform = "translate(65px,-150px)";
 
                     delay(() => {
 
@@ -749,7 +747,7 @@ function demo() {
 
                             delay(() => {
 
-                                Mouse.style.transform = "translate(65px,0)";
+                                Mouse.style.transform = "translate(65px,-10px)";
 
                                 delay(() => {
 
@@ -768,7 +766,7 @@ function demo() {
 
                                         delay(() => {
 
-                                            Mouse.style.transform = "translate(65px,-115px)";
+                                            Mouse.style.transform = "translate(65px,-125px)";
 
                                             delay(() => {
 
@@ -806,7 +804,7 @@ function demo() {
 
                                                                 delay(() => {
 
-                                                                    Mouse.style.transform = "translate(-5px,-170px)";
+                                                                    Mouse.style.transform = "translate(-5px,-180px)";
 
                                                                     delay(() => {
 
@@ -821,7 +819,7 @@ function demo() {
                                                                                 Texts[0].style.display = "none";
                                                                             }, 100);
 
-                                                                            Mouse.style.transform = "translate(-5px,-140px)";
+                                                                            Mouse.style.transform = "translate(-5px,-150px)";
 
                                                                             delay(() => {
 
@@ -832,7 +830,7 @@ function demo() {
 
                                                                                 delay(() => {
 
-                                                                                    Mouse.style.transform = "translate(-5px,-140px)";
+                                                                                    Mouse.style.transform = "translate(-5px,-150px)";
 
                                                                                     delay(() => {
 
@@ -855,7 +853,7 @@ function demo() {
                                                                                                     Texts[1].style.display = "none";
                                                                                                 }, 100);
 
-                                                                                                Mouse.style.transform = "translate(60px,-110px)";
+                                                                                                Mouse.style.transform = "translate(60px,-120px)";
 
                                                                                                 delay(() => {
 
@@ -874,7 +872,7 @@ function demo() {
 
                                                                                                         delay(() => {
 
-                                                                                                            Mouse.style.transform = "translate(100px,-150px)";
+                                                                                                            Mouse.style.transform = "translate(100px,-160px)";
 
                                                                                                             delay(() => {
 
@@ -898,66 +896,69 @@ function demo() {
                                                                                                                     }, 800);
 
 
-                                                                                                                }, 400);
+                                                                                                                }, 300);
 
                                                                                                             }, 800);
 
                                                                                                         }, 800);
 
 
-                                                                                                    }, 400);
+                                                                                                    }, 300);
 
                                                                                                 }, 800);
 
                                                                                             }, 800);
 
 
-                                                                                        }, 400);
+                                                                                        }, 300);
 
                                                                                     }, 800);
 
-                                                                                }, 500);
+                                                                                }, 800);
+
 
                                                                             }, 500);
 
-
                                                                         }, 500);
 
-                                                                    }, 800);
+
+                                                                    }, 500);
+
+                                                                }, 800);
 
 
-                                                                }, 500);
+                                                            }, 500);
 
-                                                            }, 800);
+                                                        }, 800);
 
-                                                        }, 400);
 
-                                                    }, 800);
+                                                    }, 300);
 
                                                 }, 800);
 
+                                            }, 800);
 
-                                            }, 400);
 
-                                        }, 800);
+                                        }, 300);
 
                                     }, 800);
 
+                                }, 800);
 
-                                }, 400);
 
-                            }, 800);
+                            }, 300);
 
                         }, 800);
 
+                    }, 800);
 
-                    }, 400);
 
-                }, 800);
+                }, 300);
 
             }, 800);
 
-        }, 400);
+        }, 800);
+
 
     }, 1000);
 
@@ -998,20 +999,20 @@ function stopDemo() {
     demoInterval = null;
 }
 
+
 document.addEventListener("visibilitychange", () => {
 
     if (document.hidden) {
 
-        // User switched to another tab/window
         stopDemo();
 
     } else {
 
-        // User returned to this tab
         startDemo();
 
     }
 
 });
+
 
 startDemo();
