@@ -710,358 +710,454 @@ AirConditioner.querySelector(".minus").addEventListener("click", () => {
 });
 
 
+
 const Mouse = document.querySelector(".mouse");
+
+let timers = new Set();
+let demoInterval = null;
+let isRunning = false;
+
+
+function delay(callback, time) {
+
+    const id = setTimeout(() => {
+
+        timers.delete(id);
+
+        if (document.hidden) return;
+
+        callback();
+
+    }, time);
+
+    timers.add(id);
+
+    return id;
+}
+
+
+function clearTimers() {
+
+    timers.forEach(id => {
+        clearTimeout(id);
+    });
+
+    timers.clear();
+}
 
 
 function demo() {
 
-// Step 1
+    // Step 1
 
-SectionContainer.style.display = "flex";
+    SectionContainer.style.display = "flex";
 
-SectionContainer.classList.add("active");
+    SectionContainer.classList.add("active");
 
 
-// Step 2
+    // Step 2
 
-setTimeout(() => {
+    delay(() => {
 
-SectionList.classList.add("active");
+        SectionList.classList.add("active");
 
-setTimeout(() => {
+        delay(() => {
 
-Mouse.style.transform = "translate(-80px,-160px)";
+            Mouse.style.transform = "translate(-80px,-160px)";
 
-setTimeout(() => {
+            delay(() => {
 
-Mouse.querySelector(".cursor").classList.add("active");
-Sections[0].click();
+                Mouse.querySelector(".cursor").classList.add("active");
 
-setTimeout(() => {
+                Sections[0].click();
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                delay(() => {
 
+                    Mouse.querySelector(".cursor").classList.remove("active");
 
-// Step 3
 
-setTimeout(() => {
+                    // Step 3
 
-Mouse.querySelector(".cursor").classList.add("active");
-Items[0].querySelector(".content").click();
+                    delay(() => {
 
-setTimeout(() => {
+                        Mouse.querySelector(".cursor").classList.add("active");
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                        Items[0].querySelector(".content").click();
 
+                        delay(() => {
 
-// Step 4
+                            Mouse.querySelector(".cursor").classList.remove("active");
 
-setTimeout(() => {
 
-Mouse.style.transform = "translate(0,-100px)";
+                            // Step 4
 
-setTimeout(() => {
+                            delay(() => {
 
-Mouse.querySelector(".cursor").classList.add("active");
-Lamps[1].classList.add("active");
+                                Mouse.style.transform = "translate(0,-100px)";
 
-setTimeout(() => {
+                                delay(() => {
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                                    Mouse.querySelector(".cursor").classList.add("active");
 
+                                    Lamps[1].classList.add("active");
 
-// Step 5
+                                    delay(() => {
 
-setTimeout(() => {
+                                        Mouse.querySelector(".cursor").classList.remove("active");
 
-Mouse.style.transform = "translate(-95px,155px)";
 
-setTimeout(() => {
+                                        // Step 5
 
-Mouse.querySelector(".cursor").classList.add("active");
+                                        delay(() => {
 
-Powers[0].click();
+                                            Mouse.style.transform = "translate(-95px,155px)";
 
-setTimeout(() => {
+                                            delay(() => {
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                                                Mouse.querySelector(".cursor").classList.add("active");
 
+                                                Powers[0].click();
 
-// Step 6
+                                                delay(() => {
 
-setTimeout(() => {
+                                                    Mouse.querySelector(".cursor").classList.remove("active");
 
-Mouse.style.transform = "translate(-110px,245px)";
 
-setTimeout(() => {
+                                                    // Step 6
 
-Mouse.querySelector(".cursor").classList.add("active");
+                                                    delay(() => {
 
-Toggles[0].click();
+                                                        Mouse.style.transform = "translate(-110px,245px)";
 
-setTimeout(() => {
+                                                        delay(() => {
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                                                            Mouse.querySelector(".cursor").classList.add("active");
 
+                                                            Toggles[0].click();
 
+                                                            delay(() => {
 
-// Step 7
+                                                                Mouse.querySelector(".cursor").classList.remove("active");
 
-setTimeout(() => {
 
-Mouse.style.transform = "translate(25px,255px)";
+                                                                // Step 7
 
-setTimeout(() => {
+                                                                delay(() => {
 
-Mouse.querySelector(".cursor").classList.add("active");
+                                                                    Mouse.style.transform = "translate(25px,255px)";
 
-AirConditioners[0].querySelector(".minus").click();
-AirConditioners[0].querySelector(".minus").classList.add("active");
+                                                                    delay(() => {
 
-setTimeout(() => {
+                                                                        Mouse.querySelector(".cursor").classList.add("active");
 
-Mouse.querySelector(".cursor").classList.remove("active");
-AirConditioners[0].querySelector(".minus").classList.remove("active");
+                                                                        AirConditioners[0].querySelector(".minus").click();
 
+                                                                        AirConditioners[0].querySelector(".minus").classList.add("active");
 
-// Step 8
+                                                                        delay(() => {
 
-setTimeout(() => {
+                                                                            Mouse.querySelector(".cursor").classList.remove("active");
 
-Mouse.querySelector(".cursor").classList.add("active");
+                                                                            AirConditioners[0].querySelector(".minus").classList.remove("active");
 
-AirConditioners[0].querySelector(".minus").click();
-AirConditioners[0].querySelector(".minus").classList.add("active");
 
-setTimeout(() => {
+                                                                            // Step 8
 
-Mouse.querySelector(".cursor").classList.remove("active");
-AirConditioners[0].querySelector(".minus").classList.remove("active");
+                                                                            delay(() => {
 
+                                                                                Mouse.querySelector(".cursor").classList.add("active");
 
-// Step 9
+                                                                                AirConditioners[0].querySelector(".minus").click();
 
-setTimeout(() => {
+                                                                                AirConditioners[0].querySelector(".minus").classList.add("active");
 
-Mouse.style.transform = "translate(-20px,270px)";
+                                                                                delay(() => {
 
-setTimeout(() => {
+                                                                                    Mouse.querySelector(".cursor").classList.remove("active");
 
-Mouse.style.transform = "translate(-20px,-270px)";
+                                                                                    AirConditioners[0].querySelector(".minus").classList.remove("active");
 
-Details.style.transform = "translateY(-540px)";
 
-setTimeout(() => {
+                                                                                    // Step 9
 
-Mouse.style.transform = "translate(-20px,270px)";
+                                                                                    delay(() => {
 
-Details.style.transform = "translateY(0)";
+                                                                                        Mouse.style.transform = "translate(-20px,270px)";
 
+                                                                                        delay(() => {
 
-// Step 10
+                                                                                            Mouse.style.transform = "translate(-20px,-270px)";
 
-setTimeout(() => {
+                                                                                            Details.style.transform = "translateY(-540px)";
 
-Mouse.style.transform = "translate(128px,-263px)";
+                                                                                            delay(() => {
 
-setTimeout(() => {
+                                                                                                Mouse.style.transform = "translate(-20px,270px)";
 
-Mouse.querySelector(".cursor").classList.add("active");
+                                                                                                Details.style.transform = "translateY(0)";
 
-Back.click();
-Back.classList.add("active");
 
-setTimeout(() => {
+                                                                                                // Step 10
 
-Mouse.querySelector(".cursor").classList.remove("active");
-Back.classList.remove("active");
+                                                                                                delay(() => {
 
+                                                                                                    Mouse.style.transform = "translate(128px,-263px)";
 
-// Step 11
+                                                                                                    delay(() => {
 
-setTimeout(() => {
+                                                                                                        Mouse.querySelector(".cursor").classList.add("active");
 
-Mouse.style.transform = "translate(-80px,160px)";
+                                                                                                        Back.click();
 
-setTimeout(() => {
+                                                                                                        Back.classList.add("active");
 
-Mouse.querySelector(".cursor").classList.add("active");
-Items[4].querySelector(".content").click();
+                                                                                                        delay(() => {
 
-setTimeout(() => {
+                                                                                                            Mouse.querySelector(".cursor").classList.remove("active");
 
-Mouse.querySelector(".cursor").classList.remove("active");
+                                                                                                            Back.classList.remove("active");
 
 
-// Step 12
+                                                                                                            // Step 11
 
-setTimeout(() => {
+                                                                                                            delay(() => {
 
-Mouse.style.transform = "translate(-20px,270px)";
+                                                                                                                Mouse.style.transform = "translate(-80px,160px)";
 
-setTimeout(() => {
+                                                                                                                delay(() => {
 
-Mouse.style.transform = "translate(-20px,-270px)";
+                                                                                                                    Mouse.querySelector(".cursor").classList.add("active");
 
-Details.style.transform = "translateY(-540px)";
+                                                                                                                    Items[4].querySelector(".content").click();
 
-setTimeout(() => {
+                                                                                                                    delay(() => {
 
-Mouse.style.transform = "translate(-20px,270px)";
+                                                                                                                        Mouse.querySelector(".cursor").classList.remove("active");
 
-Details.style.transform = "translateY(0)";
 
+                                                                                                                        // Step 12
 
-// Step 13
+                                                                                                                        delay(() => {
 
-setTimeout(() => {
+                                                                                                                            Mouse.style.transform = "translate(-20px,270px)";
 
-Mouse.style.transform = "translate(128px,-263px)";
+                                                                                                                            delay(() => {
 
-setTimeout(() => {
+                                                                                                                                Mouse.style.transform = "translate(-20px,-270px)";
 
-Mouse.querySelector(".cursor").classList.add("active");
+                                                                                                                                Details.style.transform = "translateY(-540px)";
 
-Back.click();
-Back.classList.add("active");
+                                                                                                                                delay(() => {
 
-setTimeout(() => {
+                                                                                                                                    Mouse.style.transform = "translate(-20px,270px)";
 
-Mouse.querySelector(".cursor").classList.remove("active");
-Back.classList.remove("active");
+                                                                                                                                    Details.style.transform = "translateY(0)";
 
 
-// Step 14
+                                                                                                                                    // Step 13
 
-setTimeout(() => {
+                                                                                                                                    delay(() => {
 
-Mouse.querySelector(".cursor").classList.add("active");
+                                                                                                                                        Mouse.style.transform = "translate(128px,-263px)";
 
-BACK.click();
-BACK.classList.add("active");
+                                                                                                                                        delay(() => {
 
-setTimeout(() => {
+                                                                                                                                            Mouse.querySelector(".cursor").classList.add("active");
 
-Mouse.querySelector(".cursor").classList.remove("active");
-BACK.classList.remove("active");
+                                                                                                                                            Back.click();
 
+                                                                                                                                            Back.classList.add("active");
 
-// Step 15
+                                                                                                                                            delay(() => {
 
-setTimeout(() => {
+                                                                                                                                                Mouse.querySelector(".cursor").classList.remove("active");
 
-Mouse.style.transform = "translate(180px,0)";
+                                                                                                                                                Back.classList.remove("active");
 
-SectionContainer.classList.remove("active");
 
-setTimeout(() => {
+                                                                                                                                                // Step 14
 
-SectionContainer.style.display = "none";
+                                                                                                                                                delay(() => {
 
-SectionList.classList.remove("active");
+                                                                                                                                                    Mouse.querySelector(".cursor").classList.add("active");
 
-Lamps[1].classList.remove("active");
+                                                                                                                                                    BACK.click();
 
-Powers[0].click();
-Toggles[0].click();
+                                                                                                                                                    BACK.classList.add("active");
 
-AirConditioners[0].querySelector(".plus").click();
-AirConditioners[0].querySelector(".plus").click();
+                                                                                                                                                    delay(() => {
 
+                                                                                                                                                        Mouse.querySelector(".cursor").classList.remove("active");
 
-},500);
+                                                                                                                                                        BACK.classList.remove("active");
 
-},500);
 
+                                                                                                                                                        // Step 15
 
-},300);
+                                                                                                                                                        delay(() => {
 
-},1000);
+                                                                                                                                                            Mouse.style.transform = "translate(180px,0)";
 
+                                                                                                                                                            SectionContainer.classList.remove("active");
 
-},300);
+                                                                                                                                                            delay(() => {
 
-},500);
+                                                                                                                                                                SectionContainer.style.display = "none";
 
-},800);
+                                                                                                                                                                SectionList.classList.remove("active");
 
+                                                                                                                                                                Lamps[1].classList.remove("active");
 
-},1500);
+                                                                                                                                                                Powers[0].click();
 
-},800);
+                                                                                                                                                                Toggles[0].click();
 
-},1500);
+                                                                                                                                                                AirConditioners[0].querySelector(".plus").click();
 
+                                                                                                                                                                AirConditioners[0].querySelector(".plus").click();
 
-},300);
+                                                                                                                                                            }, 500);
 
-},500);
+                                                                                                                                                        }, 500);
 
-},800);
 
+                                                                                                                                                    }, 300);
 
-},300);
+                                                                                                                                                }, 1000);
 
-},500);
 
-},800);
+                                                                                                                                            }, 300);
 
+                                                                                                                                        }, 500);
 
-},1500);
+                                                                                                                                    }, 800);
 
-},800);
 
-},500);
+                                                                                                                                }, 1500);
 
+                                                                                                                            }, 800);
 
-},300);
+                                                                                                                        }, 1500);
 
-},500);
 
+                                                                                                                    }, 300);
 
-},300);
+                                                                                                                }, 500);
 
-},500);
+                                                                                                            }, 800);
 
-},800);
 
+                                                                                                        }, 300);
 
-},300);
+                                                                                                    }, 500);
 
-},500);
+                                                                                                }, 800);
 
-},800);
 
+                                                                                            }, 1500);
 
-},300);
+                                                                                        }, 800);
 
-},500);
+                                                                                    }, 500);
 
-},800);
 
+                                                                                }, 300);
 
-},300);
+                                                                            }, 500);
 
-},500);
 
-},1500);
+                                                                        }, 300);
 
+                                                                    }, 500);
 
-},300);
+                                                                }, 800);
 
-},1200);
 
+                                                            }, 300);
 
-},300);
+                                                        }, 500);
 
-},500);
+                                                    }, 800);
 
-},1000);
 
-},5000);
+                                                }, 300);
 
+                                            }, 500);
+
+                                        }, 800);
+
+
+                                    }, 300);
+
+                                }, 500);
+
+                            }, 800);
+
+
+                        }, 300);
+
+                    }, 500);
+
+                }, 1500);
+
+
+            }, 300);
+
+        }, 1200);
+
+    }, 5000);
 
 }
 
-demo();
-setInterval(() => {demo();},32000);
+
+function startDemo() {
+
+    if (isRunning) return;
+
+    isRunning = true;
+
+    demo();
+
+    demoInterval = setInterval(() => {
+
+        if (!document.hidden) {
+
+            clearTimers();
+
+            demo();
+
+        }
+
+    }, 32000);
+
+}
+
+
+function stopDemo() {
+
+    isRunning = false;
+
+    clearTimers();
+
+    clearInterval(demoInterval);
+
+    demoInterval = null;
+}
+
+
+document.addEventListener("visibilitychange", () => {
+
+    if (document.hidden) {
+
+        stopDemo();
+
+    } else {
+
+        startDemo();
+
+    }
+
+});
+
+
+startDemo();
