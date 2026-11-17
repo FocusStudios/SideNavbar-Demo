@@ -705,8 +705,8 @@ function demo() {
             Mouse.querySelector(".cursor").classList.add("active");
 
             delay(() => {
+                
                 Arrow.click();
-            }, 100);
 
             delay(() => {
 
@@ -943,7 +943,8 @@ function demo() {
                 }, 800);
 
             }, 800);
-
+                
+          }, 100);
 
         }, 300);
 
