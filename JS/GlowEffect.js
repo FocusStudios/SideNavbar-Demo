@@ -708,7 +708,7 @@ function demo() {
                 
                 Arrow.click();
                 
-            }, 200);
+            }, 100);
             
             delay(() => {
 
