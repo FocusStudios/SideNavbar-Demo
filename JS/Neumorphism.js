@@ -251,7 +251,6 @@ if(Body.classList.contains("dark")){Body.classList.replace("dark","light");Theme
 });
 
 
-
 const Mouse = document.querySelector(".mouse");
 
 let timers = new Set();
@@ -259,6 +258,96 @@ let demoInterval = null;
 let isRunning = false;
 
 
+// All elements affected by the demo
+const demoElements = [
+    Mouse,
+    Power,
+    Minus,
+    Toggle,
+    speedButton,
+    Reset,
+    Theme,
+    ...ranges
+].filter(Boolean);
+
+
+// Capture original element states
+const demoStates = [...new Set(
+
+    demoElements.flatMap(el => [
+        el,
+        ...el.querySelectorAll("*")
+    ])
+
+)].map(el => ({
+
+    el,
+    className: el.getAttribute("class"),
+    style: el.getAttribute("style"),
+    hidden: el.hidden
+
+}));
+
+
+// Capture original form-control values
+const formStates = demoStates.map(({ el }) => {
+
+    if (
+        el instanceof HTMLInputElement ||
+        el instanceof HTMLTextAreaElement ||
+        el instanceof HTMLSelectElement
+    ) {
+
+        return {
+            el,
+            value: el.value,
+            checked: el.checked
+        };
+
+    }
+
+    return null;
+
+}).filter(Boolean);
+
+
+// Reset all demo changes
+function resetDemo() {
+
+    clearTimers();
+
+    // Restore original classes and styles
+    demoStates.forEach(({ el, className, style, hidden }) => {
+
+        if (className === null) {
+            el.removeAttribute("class");
+        } else {
+            el.setAttribute("class", className);
+        }
+
+        if (style === null) {
+            el.removeAttribute("style");
+        } else {
+            el.setAttribute("style", style);
+        }
+
+        el.hidden = hidden;
+
+    });
+
+
+    // Restore original input states
+    formStates.forEach(({ el, value, checked }) => {
+
+        el.value = value;
+        el.checked = checked;
+
+    });
+
+}
+
+
+// Delay function
 function delay(callback, time) {
 
     const id = setTimeout(() => {
@@ -277,6 +366,7 @@ function delay(callback, time) {
 }
 
 
+// Clear all pending timers
 function clearTimers() {
 
     timers.forEach(id => {
@@ -284,9 +374,11 @@ function clearTimers() {
     });
 
     timers.clear();
+
 }
 
 
+// Demo animation
 function demo() {
 
     // Step 1
@@ -549,19 +641,24 @@ function demo() {
 }
 
 
+// Start demo
 function startDemo() {
 
     if (isRunning) return;
 
     isRunning = true;
 
+    // Reset everything before starting
+    resetDemo();
+
     demo();
 
+    // Repeat every 17 seconds
     demoInterval = setInterval(() => {
 
         if (!document.hidden) {
 
-            clearTimers();
+            resetDemo();
 
             demo();
 
@@ -572,6 +669,7 @@ function startDemo() {
 }
 
 
+// Stop demo
 function stopDemo() {
 
     isRunning = false;
@@ -581,9 +679,14 @@ function stopDemo() {
     clearInterval(demoInterval);
 
     demoInterval = null;
+
+    // Restore all original states
+    resetDemo();
+
 }
 
 
+// Handle tab visibility
 document.addEventListener("visibilitychange", () => {
 
     if (document.hidden) {
@@ -599,4 +702,5 @@ document.addEventListener("visibilitychange", () => {
 });
 
 
+// Start automatically
 startDemo();
