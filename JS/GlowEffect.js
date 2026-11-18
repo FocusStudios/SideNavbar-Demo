@@ -706,7 +706,7 @@ function demo() {
 
             delay(() => {
                 
-                Arrow.click();
+                SideNavbar.classList.add("active");
                 
             }, 100);
             
@@ -783,7 +783,7 @@ function demo() {
                                                             Mouse.querySelector(".cursor").classList.add("active");
 
                                                             delay(() => {
-                                                                Arrow.click();
+                                                                SideNavbar.classList.remove("active");
                                                             }, 100);
 
                                                             delay(() => {
