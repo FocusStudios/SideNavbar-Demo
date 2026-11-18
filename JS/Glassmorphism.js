@@ -380,7 +380,6 @@ document.addEventListener("touchend", endDrag);
 
 
 
-
 const Mouse = document.querySelector(".mouse");
 
 let timers = new Set();
@@ -388,13 +387,223 @@ let demoInterval = null;
 let isRunning = false;
 
 
+// =====================================
+// ALL ELEMENTS AFFECTED BY THE DEMO
+// =====================================
+
+const demoElements = [
+
+    Body,
+
+    Mouse,
+
+    SideNavbar,
+
+    Ham,
+    Cross,
+
+    ...Frames,
+    ...Items,
+
+    Settings,
+    AccountSettings,
+    BackAS,
+    Save,
+
+    ...Sections,
+
+    profileEditImg,
+    document.querySelector(".account .container img"),
+
+    document.querySelector(".account-info h3"),
+    document.querySelector(".account-info span")
+
+].filter(Boolean);
+
+
+// =====================================
+// CAPTURE ORIGINAL ELEMENT STATES
+// =====================================
+
+const demoStates = [...new Set(
+
+    demoElements.flatMap(el => [
+
+        el,
+        ...el.querySelectorAll("*")
+
+    ])
+
+)].map(el => ({
+
+    el,
+
+    className: el.getAttribute("class"),
+
+    style: el.getAttribute("style"),
+
+    hidden: el.hidden,
+
+    src: el instanceof HTMLImageElement
+        ? el.getAttribute("src")
+        : null
+
+}));
+
+
+// =====================================
+// CAPTURE ORIGINAL TEXT
+// =====================================
+
+const textElements = [
+
+    ...document.querySelectorAll(".account-info h3"),
+    ...document.querySelectorAll(".account-info span"),
+    ...Sections.flatMap(Section =>
+        [...Section.querySelectorAll("span")]
+    )
+
+];
+
+const textStates = [...new Set(textElements)].map(el => ({
+
+    el,
+
+    textContent: el.textContent
+
+}));
+
+
+// =====================================
+// CAPTURE ORIGINAL FORM VALUES
+// =====================================
+
+const formElements = [
+
+    ...Sections.flatMap(Section =>
+        [...Section.querySelectorAll("input")]
+    ),
+
+    CamerInput
+
+].filter(Boolean);
+
+
+const formStates = [...new Set(formElements)].map(el => ({
+
+    el,
+
+    value: el.value,
+
+    checked: el.checked
+
+}));
+
+
+// =====================================
+// CAPTURE ORIGINAL NAVBAR POSITION
+// =====================================
+
+const originalNavbarLeft = SideNavbar.style.left;
+
+
+// =====================================
+// RESET DEMO
+// =====================================
+
+function resetDemo() {
+
+    clearTimers();
+
+
+    // Restore classes, styles, visibility and image sources
+
+    demoStates.forEach(({
+
+        el,
+        className,
+        style,
+        hidden,
+        src
+
+    }) => {
+
+        if (className === null) {
+
+            el.removeAttribute("class");
+
+        } else {
+
+            el.setAttribute("class", className);
+
+        }
+
+
+        if (style === null) {
+
+            el.removeAttribute("style");
+
+        } else {
+
+            el.setAttribute("style", style);
+
+        }
+
+
+        el.hidden = hidden;
+
+
+        if (el instanceof HTMLImageElement && src !== null) {
+
+            el.setAttribute("src", src);
+
+        }
+
+    });
+
+
+    // Restore text
+
+    textStates.forEach(({ el, textContent }) => {
+
+        el.textContent = textContent;
+
+    });
+
+
+    // Restore form values
+
+    formStates.forEach(({ el, value, checked }) => {
+
+        el.value = value;
+
+        if (el.type === "checkbox" || el.type === "radio") {
+
+            el.checked = checked;
+
+        }
+
+    });
+
+
+    // Restore sidebar position
+
+    SideNavbar.style.left = originalNavbarLeft;
+
+}
+
+
+// =====================================
+// DELAY FUNCTION
+// =====================================
+
 function delay(callback, time) {
 
     const id = setTimeout(() => {
 
         timers.delete(id);
 
-        if (document.hidden) return;
+        if (!isRunning || document.hidden) return;
 
         callback();
 
@@ -403,18 +612,30 @@ function delay(callback, time) {
     timers.add(id);
 
     return id;
+
 }
 
+
+// =====================================
+// CLEAR TIMERS
+// =====================================
 
 function clearTimers() {
 
     timers.forEach(id => {
+
         clearTimeout(id);
+
     });
 
     timers.clear();
+
 }
 
+
+// =====================================
+// DEMO ANIMATION
+// =====================================
 
 function demo() {
 
@@ -452,7 +673,9 @@ function demo() {
                         Mouse.querySelector(".cursor").classList.add("active");
 
                         delay(() => {
+
                             Items[1].click();
+
                         }, 100);
 
                         delay(() => {
@@ -471,7 +694,9 @@ function demo() {
                                     Mouse.querySelector(".cursor").classList.add("active");
 
                                     delay(() => {
+
                                         Settings.click();
+
                                     }, 100);
 
                                     delay(() => {
@@ -515,7 +740,9 @@ function demo() {
                                                             Mouse.querySelector(".cursor").classList.add("active");
 
                                                             delay(() => {
+
                                                                 Items[0].click();
+
                                                             }, 100);
 
                                                             delay(() => {
@@ -534,7 +761,9 @@ function demo() {
                                                                         Mouse.querySelector(".cursor").classList.add("active");
 
                                                                         delay(() => {
+
                                                                             SideNavbar.classList.remove("active");
+
                                                                         }, 100);
 
                                                                         delay(() => {
@@ -597,19 +826,28 @@ function demo() {
 }
 
 
+// =====================================
+// START DEMO
+// =====================================
+
 function startDemo() {
 
     if (isRunning) return;
 
     isRunning = true;
 
+    resetDemo();
+
     demo();
+
+
+    // Repeat every 12 seconds
 
     demoInterval = setInterval(() => {
 
-        if (!document.hidden) {
+        if (!document.hidden && isRunning) {
 
-            clearTimers();
+            resetDemo();
 
             demo();
 
@@ -620,6 +858,10 @@ function startDemo() {
 }
 
 
+// =====================================
+// STOP DEMO
+// =====================================
+
 function stopDemo() {
 
     isRunning = false;
@@ -629,8 +871,15 @@ function stopDemo() {
     clearInterval(demoInterval);
 
     demoInterval = null;
+
+    resetDemo();
+
 }
 
+
+// =====================================
+// TAB VISIBILITY
+// =====================================
 
 document.addEventListener("visibilitychange", () => {
 
@@ -646,5 +895,9 @@ document.addEventListener("visibilitychange", () => {
 
 });
 
+
+// =====================================
+// START AUTOMATICALLY
+// =====================================
 
 startDemo();
