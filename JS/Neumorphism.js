@@ -251,17 +251,27 @@ if(Body.classList.contains("dark")){Body.classList.replace("dark","light");Theme
 });
 
 
+// =====================================
+// DEMO ANIMATION
+// =====================================
+
 const Mouse = document.querySelector(".mouse");
 
 let timers = new Set();
+
 let demoInterval = null;
+
 let isRunning = false;
 
 
 // All elements affected by the demo
 const demoElements = [
     Mouse,
+    Body,
+    ControlPanel,
+    Temp,
     Power,
+    Plus,
     Minus,
     Toggle,
     speedButton,
@@ -282,8 +292,11 @@ const demoStates = [...new Set(
 )].map(el => ({
 
     el,
+
     className: el.getAttribute("class"),
+
     style: el.getAttribute("style"),
+
     hidden: el.hidden
 
 }));
@@ -311,25 +324,51 @@ const formStates = demoStates.map(({ el }) => {
 }).filter(Boolean);
 
 
-// Reset all demo changes
+// Capture original JavaScript states
+const originalCount = count;
+
+const originalTemp = Temp.innerHTML;
+
+const originalThemeText = Theme.querySelector("span").innerHTML;
+
+const originalSavedRangeValues = [...savedRangeValues];
+
+const originalRotation = rotation;
+
+
+// =====================================
+// RESET DEMO
+// =====================================
+
 function resetDemo() {
 
     clearTimers();
+
 
     // Restore original classes and styles
     demoStates.forEach(({ el, className, style, hidden }) => {
 
         if (className === null) {
+
             el.removeAttribute("class");
+
         } else {
+
             el.setAttribute("class", className);
+
         }
 
+
         if (style === null) {
+
             el.removeAttribute("style");
+
         } else {
+
             el.setAttribute("style", style);
+
         }
+
 
         el.hidden = hidden;
 
@@ -340,14 +379,36 @@ function resetDemo() {
     formStates.forEach(({ el, value, checked }) => {
 
         el.value = value;
+
         el.checked = checked;
 
     });
 
+
+    // Restore temperature
+    count = originalCount;
+
+    Temp.innerHTML = originalTemp;
+
+
+    // Restore theme label
+    Theme.querySelector("span").innerHTML = originalThemeText;
+
+
+    // Restore saved range values
+    savedRangeValues = [...originalSavedRangeValues];
+
+
+    // Restore fan rotation
+    rotation = originalRotation;
+
 }
 
 
-// Delay function
+// =====================================
+// DELAY FUNCTION
+// =====================================
+
 function delay(callback, time) {
 
     const id = setTimeout(() => {
@@ -363,14 +424,20 @@ function delay(callback, time) {
     timers.add(id);
 
     return id;
+
 }
 
 
-// Clear all pending timers
+// =====================================
+// CLEAR TIMERS
+// =====================================
+
 function clearTimers() {
 
     timers.forEach(id => {
+
         clearTimeout(id);
+
     });
 
     timers.clear();
@@ -378,11 +445,13 @@ function clearTimers() {
 }
 
 
-// Demo animation
+// =====================================
+// DEMO ANIMATION
+// =====================================
+
 function demo() {
 
     // Step 1
-
     delay(() => {
 
         Mouse.style.transform = "translate(-58px,-262px)";
@@ -392,6 +461,7 @@ function demo() {
             Mouse.querySelector(".cursor").classList.add("active");
 
             Power.click();
+
             Power.classList.add("active");
 
             delay(() => {
@@ -402,7 +472,6 @@ function demo() {
 
 
                 // Step 2
-
                 delay(() => {
 
                     Mouse.style.transform = "translate(-10px,-100px)";
@@ -412,6 +481,7 @@ function demo() {
                         Mouse.querySelector(".cursor").classList.add("active");
 
                         Minus.click();
+
                         Minus.classList.add("active");
 
                         delay(() => {
@@ -422,12 +492,12 @@ function demo() {
 
 
                             // Step 3
-
                             delay(() => {
 
                                 Mouse.querySelector(".cursor").classList.add("active");
 
                                 Minus.click();
+
                                 Minus.classList.add("active");
 
                                 delay(() => {
@@ -438,7 +508,6 @@ function demo() {
 
 
                                     // Step 4
-
                                     delay(() => {
 
                                         Mouse.style.transform = "translate(40px,-40px)";
@@ -455,7 +524,6 @@ function demo() {
 
 
                                                 // Step 5
-
                                                 delay(() => {
 
                                                     Mouse.style.transform = "translate(20px,13px)";
@@ -468,7 +536,6 @@ function demo() {
 
 
                                                         // Step 6
-
                                                         delay(() => {
 
                                                             Mouse.style.transform = "translate(-18px,155px)";
@@ -481,7 +548,6 @@ function demo() {
 
 
                                                                 // Step 7
-
                                                                 delay(() => {
 
                                                                     Mouse.style.transform = "translate(7px,120px)";
@@ -494,7 +560,6 @@ function demo() {
 
 
                                                                         // Step 8
-
                                                                         delay(() => {
 
                                                                             Mouse.style.transform = "translate(20px,-97px)";
@@ -504,6 +569,7 @@ function demo() {
                                                                                 Mouse.querySelector(".cursor").classList.add("active");
 
                                                                                 Reset.click();
+
                                                                                 Reset.classList.add("active");
 
                                                                                 delay(() => {
@@ -514,7 +580,6 @@ function demo() {
 
 
                                                                                     // Step 9
-
                                                                                     delay(() => {
 
                                                                                         Mouse.style.transform = "translate(80px,-235px)";
@@ -531,7 +596,6 @@ function demo() {
 
 
                                                                                                 // Step 10
-
                                                                                                 delay(() => {
 
                                                                                                     Mouse.querySelector(".cursor").classList.add("active");
@@ -544,7 +608,6 @@ function demo() {
 
 
                                                                                                         // Step 11
-
                                                                                                         delay(() => {
 
                                                                                                             Mouse.style.transform = "translate(-58px,-262px)";
@@ -554,6 +617,7 @@ function demo() {
                                                                                                                 Mouse.querySelector(".cursor").classList.add("active");
 
                                                                                                                 Power.click();
+
                                                                                                                 Power.classList.add("active");
 
                                                                                                                 delay(() => {
@@ -564,13 +628,11 @@ function demo() {
 
 
                                                                                                                     // Step 12
-
                                                                                                                     delay(() => {
 
                                                                                                                         Mouse.style.transform = "translate(180px,0)";
 
                                                                                                                     }, 500);
-
 
                                                                                                                 }, 300);
 
@@ -578,11 +640,9 @@ function demo() {
 
                                                                                                         }, 800);
 
-
                                                                                                     }, 300);
 
                                                                                                 }, 500);
-
 
                                                                                             }, 300);
 
@@ -590,28 +650,23 @@ function demo() {
 
                                                                                     }, 800);
 
-
                                                                                 }, 300);
 
                                                                             }, 500);
 
                                                                         }, 800);
 
-
                                                                     }, 500);
 
                                                                 }, 800);
-
 
                                                             }, 500);
 
                                                         }, 800);
 
-
                                                     }, 500);
 
                                                 }, 800);
-
 
                                             }, 300);
 
@@ -619,18 +674,15 @@ function demo() {
 
                                     }, 800);
 
-
                                 }, 300);
 
                             }, 500);
 
                         }, 800);
 
-
                     }, 300);
 
                 }, 500);
-
 
             }, 300);
 
@@ -641,17 +693,20 @@ function demo() {
 }
 
 
-// Start demo
+// =====================================
+// START DEMO
+// =====================================
+
 function startDemo() {
 
     if (isRunning) return;
 
     isRunning = true;
 
-    // Reset everything before starting
     resetDemo();
 
     demo();
+
 
     // Repeat every 17 seconds
     demoInterval = setInterval(() => {
@@ -669,7 +724,10 @@ function startDemo() {
 }
 
 
-// Stop demo
+// =====================================
+// STOP DEMO
+// =====================================
+
 function stopDemo() {
 
     isRunning = false;
@@ -680,13 +738,15 @@ function stopDemo() {
 
     demoInterval = null;
 
-    // Restore all original states
     resetDemo();
 
 }
 
 
-// Handle tab visibility
+// =====================================
+// TAB VISIBILITY
+// =====================================
+
 document.addEventListener("visibilitychange", () => {
 
     if (document.hidden) {
