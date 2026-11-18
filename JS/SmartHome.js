@@ -690,25 +690,39 @@ document.addEventListener("touchend", onEnd);
 
 });
 
-// Temperature Control
+
 AirConditioners.forEach(AirConditioner => {
 
-let count = 22;
+    AirConditioner.querySelector(".plus").addEventListener("click", () => {
 
-AirConditioner.querySelector(".plus").addEventListener("click", () => {
-  if (count >= 30) return;
-  count++;
-  AirConditioner.querySelector(".digital").innerHTML = count;
+        const digital = AirConditioner.querySelector(".digital");
+
+        let count = Number(digital.textContent);
+
+        if (count >= 30) return;
+
+        count++;
+
+        digital.textContent = count;
+
+    });
+
+
+    AirConditioner.querySelector(".minus").addEventListener("click", () => {
+
+        const digital = AirConditioner.querySelector(".digital");
+
+        let count = Number(digital.textContent);
+
+        if (count <= 16) return;
+
+        count--;
+
+        digital.textContent = count;
+
+    });
+
 });
-
-AirConditioner.querySelector(".minus").addEventListener("click", () => {
-  if (count <= 16) return;
-  count--;
-  AirConditioner.querySelector(".digital").innerHTML = count;
-});
-
-});
-
 
 
 
@@ -719,24 +733,42 @@ let demoInterval = null;
 let isRunning = false;
 
 
-// All elements affected by the demo
+// =====================================
+// ALL ELEMENTS AFFECTED BY THE DEMO
+// =====================================
+
 const demoElements = [
     Mouse,
+
+    ItemContainer,
+    ItemList,
+
     SectionContainer,
     SectionList,
     Details,
+
     Back,
     BACK,
+
     ...Sections,
     ...Items,
+    ...Slides,
+    ...details,
+
     ...Lamps,
     ...Powers,
     ...Toggles,
-    ...AirConditioners
+    ...ControlButtons,
+    ...AirConditioners,
+
+    ...States
 ].filter(Boolean);
 
 
-// Capture original element states
+// =====================================
+// CAPTURE ORIGINAL ELEMENT STATES
+// =====================================
+
 const demoStates = [...new Set(
 
     demoElements.flatMap(el => [
@@ -747,9 +779,27 @@ const demoStates = [...new Set(
 )].map(el => ({
 
     el,
+
     className: el.getAttribute("class"),
+
     style: el.getAttribute("style"),
+
     hidden: el.hidden
+
+}));
+
+
+// Capture original text values
+const textElements = [
+    ...States,
+    ...document.querySelectorAll(".digital")
+];
+
+const textStates = [...new Set(textElements)].map(el => ({
+
+    el,
+
+    textContent: el.textContent
 
 }));
 
@@ -776,35 +826,58 @@ const formStates = demoStates.map(({ el }) => {
 }).filter(Boolean);
 
 
-// Reset all demo changes
+// =====================================
+// RESET ALL DEMO CHANGES
+// =====================================
+
 function resetDemo() {
 
     clearTimers();
+
 
     // Restore original classes and styles
     demoStates.forEach(({ el, className, style, hidden }) => {
 
         if (className === null) {
+
             el.removeAttribute("class");
+
         } else {
+
             el.setAttribute("class", className);
+
         }
 
+
         if (style === null) {
+
             el.removeAttribute("style");
+
         } else {
+
             el.setAttribute("style", style);
+
         }
+
 
         el.hidden = hidden;
 
     });
 
 
-    // Restore original input states
+    // Restore original text values
+    textStates.forEach(({ el, textContent }) => {
+
+        el.textContent = textContent;
+
+    });
+
+
+    // Restore original form-control values
     formStates.forEach(({ el, value, checked }) => {
 
         el.value = value;
+
         el.checked = checked;
 
     });
@@ -812,7 +885,10 @@ function resetDemo() {
 }
 
 
-// Delay function
+// =====================================
+// DELAY FUNCTION
+// =====================================
+
 function delay(callback, time) {
 
     const id = setTimeout(() => {
@@ -828,14 +904,20 @@ function delay(callback, time) {
     timers.add(id);
 
     return id;
+
 }
 
 
-// Clear all pending timers
+// =====================================
+// CLEAR ALL PENDING TIMERS
+// =====================================
+
 function clearTimers() {
 
     timers.forEach(id => {
+
         clearTimeout(id);
+
     });
 
     timers.clear();
@@ -843,7 +925,10 @@ function clearTimers() {
 }
 
 
-// Demo animation
+// =====================================
+// DEMO ANIMATION
+// =====================================
+
 function demo() {
 
     // Step 1
@@ -948,15 +1033,17 @@ function demo() {
 
                                                                         Mouse.querySelector(".cursor").classList.add("active");
 
-                                                                        AirConditioners[0].querySelector(".minus").click();
+                                                                        const minus = AirConditioners[0].querySelector(".minus");
 
-                                                                        AirConditioners[0].querySelector(".minus").classList.add("active");
+                                                                        minus.click();
+
+                                                                        minus.classList.add("active");
 
                                                                         delay(() => {
 
                                                                             Mouse.querySelector(".cursor").classList.remove("active");
 
-                                                                            AirConditioners[0].querySelector(".minus").classList.remove("active");
+                                                                            minus.classList.remove("active");
 
 
                                                                             // Step 8
@@ -965,15 +1052,15 @@ function demo() {
 
                                                                                 Mouse.querySelector(".cursor").classList.add("active");
 
-                                                                                AirConditioners[0].querySelector(".minus").click();
+                                                                                minus.click();
 
-                                                                                AirConditioners[0].querySelector(".minus").classList.add("active");
+                                                                                minus.classList.add("active");
 
                                                                                 delay(() => {
 
                                                                                     Mouse.querySelector(".cursor").classList.remove("active");
 
-                                                                                    AirConditioners[0].querySelector(".minus").classList.remove("active");
+                                                                                    minus.classList.remove("active");
 
 
                                                                                     // Step 9
@@ -1110,19 +1197,19 @@ function demo() {
 
                                                                                                                                                                 Toggles[0].click();
 
-                                                                                                                                                                AirConditioners[0].querySelector(".plus").click();
+                                                                                                                                                                const plus = AirConditioners[0].querySelector(".plus");
 
-                                                                                                                                                                AirConditioners[0].querySelector(".plus").click();
+                                                                                                                                                                plus.click();
+
+                                                                                                                                                                plus.click();
 
                                                                                                                                                             }, 500);
 
                                                                                                                                                         }, 500);
 
-
                                                                                                                                                     }, 300);
 
                                                                                                                                                 }, 1000);
-
 
                                                                                                                                             }, 300);
 
@@ -1130,13 +1217,11 @@ function demo() {
 
                                                                                                                                     }, 800);
 
-
                                                                                                                                 }, 1500);
 
                                                                                                                             }, 800);
 
                                                                                                                         }, 1500);
-
 
                                                                                                                     }, 300);
 
@@ -1144,13 +1229,11 @@ function demo() {
 
                                                                                                             }, 800);
 
-
                                                                                                         }, 300);
 
                                                                                                     }, 500);
 
                                                                                                 }, 800);
-
 
                                                                                             }, 1500);
 
@@ -1158,11 +1241,9 @@ function demo() {
 
                                                                                     }, 500);
 
-
                                                                                 }, 300);
 
                                                                             }, 500);
-
 
                                                                         }, 300);
 
@@ -1170,13 +1251,11 @@ function demo() {
 
                                                                 }, 800);
 
-
                                                             }, 300);
 
                                                         }, 500);
 
                                                     }, 800);
-
 
                                                 }, 300);
 
@@ -1184,20 +1263,17 @@ function demo() {
 
                                         }, 800);
 
-
                                     }, 300);
 
                                 }, 500);
 
                             }, 800);
 
-
                         }, 300);
 
                     }, 500);
 
                 }, 1500);
-
 
             }, 300);
 
@@ -1208,17 +1284,21 @@ function demo() {
 }
 
 
-// Start demo
+// =====================================
+// START DEMO
+// =====================================
+
 function startDemo() {
 
     if (isRunning) return;
 
     isRunning = true;
 
-    // Restore original states before starting
+    // Restore everything before starting
     resetDemo();
 
     demo();
+
 
     // Repeat every 32 seconds
     demoInterval = setInterval(() => {
@@ -1236,7 +1316,10 @@ function startDemo() {
 }
 
 
-// Stop demo
+// =====================================
+// STOP DEMO
+// =====================================
+
 function stopDemo() {
 
     isRunning = false;
@@ -1253,7 +1336,10 @@ function stopDemo() {
 }
 
 
-// Handle tab visibility
+// =====================================
+// HANDLE TAB VISIBILITY
+// =====================================
+
 document.addEventListener("visibilitychange", () => {
 
     if (document.hidden) {
