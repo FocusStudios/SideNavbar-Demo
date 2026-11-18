@@ -656,6 +656,7 @@ Frames.forEach(Frame => {Frame.style.overflowY="auto";});
 
 
 
+
 const Mouse = document.querySelector(".mouse");
 
 let timers = new Set();
@@ -663,6 +664,60 @@ let demoInterval = null;
 let isRunning = false;
 
 
+// Save the original state of all demo elements
+const demoElements = [
+    Mouse,
+    SideNavbar,
+    ...ItemMenus,
+    ...MenuItemBs,
+    ...Texts
+].filter(Boolean);
+
+
+const demoStates = [...new Set(
+
+    demoElements.flatMap(el => [
+        el,
+        ...el.querySelectorAll("*")
+    ])
+
+)].map(el => ({
+
+    el,
+    className: el.getAttribute("class"),
+    style: el.getAttribute("style"),
+    hidden: el.hidden
+
+}));
+
+
+// Reset all demo changes
+function resetDemo() {
+
+    clearTimers();
+
+    demoStates.forEach(({ el, className, style, hidden }) => {
+
+        if (className === null) {
+            el.removeAttribute("class");
+        } else {
+            el.setAttribute("class", className);
+        }
+
+        if (style === null) {
+            el.removeAttribute("style");
+        } else {
+            el.setAttribute("style", style);
+        }
+
+        el.hidden = hidden;
+
+    });
+
+}
+
+
+// Delay function
 function delay(callback, time) {
 
     const id = setTimeout(() => {
@@ -682,6 +737,7 @@ function delay(callback, time) {
 }
 
 
+// Clear all pending timers
 function clearTimers() {
 
     timers.forEach(id => {
@@ -689,9 +745,11 @@ function clearTimers() {
     });
 
     timers.clear();
+
 }
 
 
+// Demo animation
 function demo() {
 
     // Step 1
@@ -705,11 +763,11 @@ function demo() {
             Mouse.querySelector(".cursor").classList.add("active");
 
             delay(() => {
-                
+
                 SideNavbar.classList.add("active");
-                
+
             }, 100);
-            
+
             delay(() => {
 
                 Mouse.querySelector(".cursor").classList.remove("active");
@@ -953,19 +1011,24 @@ function demo() {
 }
 
 
+// Start demo
 function startDemo() {
 
     if (isRunning) return;
 
     isRunning = true;
 
+    // Reset everything before starting
+    resetDemo();
+
     demo();
 
+    // Repeat demo every 20 seconds
     demoInterval = setInterval(() => {
 
         if (!document.hidden) {
 
-            clearTimers();
+            resetDemo();
 
             demo();
 
@@ -976,6 +1039,7 @@ function startDemo() {
 }
 
 
+// Stop demo
 function stopDemo() {
 
     isRunning = false;
@@ -985,8 +1049,14 @@ function stopDemo() {
     clearInterval(demoInterval);
 
     demoInterval = null;
+
+    // Restore original states
+    resetDemo();
+
 }
 
+
+// Handle tab visibility
 document.addEventListener("visibilitychange", () => {
 
     if (document.hidden) {
@@ -1003,4 +1073,8 @@ document.addEventListener("visibilitychange", () => {
 
 });
 
-startDemo();
+
+// Start automatically if the tab is already visible
+if (!document.hidden) {
+    startDemo();
+}
